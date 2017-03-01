@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class CalculatorDisplay extends Component {
   render() {
     return (
-      <div>
+      <div className="calculator-display">
         Display
       </div>
     );
