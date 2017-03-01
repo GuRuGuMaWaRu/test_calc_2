@@ -1,0 +1,20 @@
+.container {
+  min-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.calculator-display {
+  margin: 0 0.5em;
+  text-align: right;
+}
+
+.calculator-display-input {
+  height: 100px;
+  overflow: auto;
+}
+
+.calculator-keypad {
+  background-color: hsla(220, 86%, 95%, 1);
+  width: 100%;
+}
