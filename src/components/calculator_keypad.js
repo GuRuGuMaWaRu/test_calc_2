@@ -4,7 +4,9 @@ export default class CalculatorKeypad extends Component {
   render() {
     return (
       <div className='calculator-keypad'>
-        Keypad
+        <div className='calculator-keypad-pan'></div>
+        <div className='calculator-keypad-keypad'>Keypad</div>
+        <div className='calculator-keypad-pan'></div>
       </div>
     );
   }

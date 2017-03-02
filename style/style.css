@@ -8,32 +8,57 @@ body {
   margin: 0;
 }
 
+/* DISPLAY */
+
 .calculator-display {
+  display: flex;
+  height: 200px;
+  margin: 0;
+}
+
+.calculator-display-display {
   background-color: #fff;
+  max-width: 500px;
+  flex: 2 600px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 200px;
-  margin: 0;
   text-align: right;
   font-size: 1.3em;
 }
 
 .calculator-display-input {
-  /*height: 125px;*/
-  /*flex: 3 120px;*/
   overflow: auto;
   padding: 0 1em;
   margin-bottom: 1.5em;
 }
 .calculator-display-result {
-  /*flex: 1 40px;*/
-  /*height: 35px;*/
   padding: 0 1em;
   margin-bottom: 1em;
 }
 
+/* KEYPAD */
+
 .calculator-keypad {
+  display: flex;
+}
+
+.calculator-keypad-keypad {
   background-color: #fff;
-  width: 100%; height: 100%;
+  max-width: 500px;
+  flex: 2 600px;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 600px) {
+  .calculator-keypad-pan {
+    flex: 1 auto;
+  }
+}
+
+@media (min-width: 600px) {
+  .calculator-display-pan {
+    flex: 1 auto;
+  }
 }
