@@ -14,18 +14,12 @@ body {
 
 .calculator-display {
   background-color: #fff;
-  display: flex;
-  height: 200px;
-  margin: 0;
-}
-
-.calculator-display-display {
-  max-width: 500px;
-  flex: 2 600px;
+  height: 200px; max-width: 500px;
+  margin: 0 auto;
+  text-align: right;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  text-align: right;
 }
 
 .calculator-display-input {
@@ -46,41 +40,42 @@ body {
 /*==============================================*/
 
 .calculator-keypad {
-  display: flex;
-  height: 100%;
-}
-
-.calculator-keypad-keypad {
   max-width: 500px;
-  flex: 2 600px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 
-.calculator-keypad-keypad-key {
-  min-width: 80px; min-height: 70px;
-  line-height: 70px;
-  text-align: center;
+.calculator-keypad-key {
+  min-width: 35px; min-height: 32px;
+  line-height: 32px;
   font-size: 1.2em;
+  text-align: center;
 }
 
 /*==============================================*/
 /* MEDIA QUERIES */
 /*==============================================*/
 
-@media (min-width: 220px) {
-  .calculator-keypad-keypad-key {
-    min-width: 55px; min-height: 50px;
+@media (min-width: 175px) {
+  .calculator-keypad-key {
+    min-width: 43px; min-height: 40px;
+    line-height: 40px;
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 212px) {
+  .calculator-keypad-key {
+    min-width: 53px; min-height: 50px;
     line-height: 50px;
-    font-size: 1.6em;
+    font-size: 1.2em;
   }
 }
 
 @media (min-width: 260px) {
-  .calculator-keypad-keypad-key {
+  .calculator-keypad-key {
     min-width: 65px; min-height: 55px;
     line-height: 55px;
     font-size: 1.6em;
@@ -88,7 +83,7 @@ body {
 }
 
 @media (min-width: 320px) {
-  .calculator-keypad-keypad-key {
+  .calculator-keypad-key {
     min-width: 80px; min-height: 70px;
     line-height: 70px;
     font-size: 1.6em;
@@ -102,7 +97,7 @@ body {
 }
 
 @media (min-width: 400px) {
-  .calculator-keypad-keypad-key {
+  .calculator-keypad-key {
     min-width: 100px; min-height: 90px;
     line-height: 90px;
     font-size: 2em;
@@ -110,13 +105,7 @@ body {
 }
 
 @media (min-width: 500px) {
-  .calculator-display-pan {
-    flex: 1 auto;
-  }
-  .calculator-keypad-pan {
-    flex: 1 auto;
-  }
-  .calculator-keypad-keypad-key {
+  .calculator-keypad-key {
     min-width: 125px; min-height: 100px;
     line-height: 100px;
     font-size: 2em;
