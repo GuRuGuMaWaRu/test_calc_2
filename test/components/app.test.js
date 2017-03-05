@@ -12,17 +12,15 @@ describe('App', () => {
   beforeEach(() => {
     wrapper = shallow(<App />);
   });
-  
+
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
   });
   it('shows display', () => {
-    const calculatorDisplay = <CalculatorDisplay />;
-    expect(wrapper.contains(calculatorDisplay)).toEqual(true);
+    expect(wrapper.find(CalculatorDisplay)).toBeTruthy();
   });
   it('shows keypad', () => {
-    const calculatorKeypad = <CalculatorKeypad />;
-    expect(wrapper.contains(calculatorKeypad)).toEqual(true);
+    expect(wrapper.find(CalculatorKeypad)).toBeTruthy();
   });
 });

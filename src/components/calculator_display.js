@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default class CalculatorDisplay extends Component {
+class CalculatorDisplay extends Component {
+  componentWillMount() {
+    this.props.setInput();
+  }
+
   render() {
     return (
       <div className="calculator-display">
-        <div className="calculator-display-input">Input</div>
+        <div className="calculator-display-input">{this.props.input}</div>
         <div className="calculator-display-result">Result</div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { input: state.input }
+}
+
+export default connect(mapStateToProps, actions)(CalculatorDisplay);
