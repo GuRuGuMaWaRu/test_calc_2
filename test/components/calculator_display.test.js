@@ -16,11 +16,9 @@ describe('CalculatorDisplay', () => {
     ReactDOM.render(<CalculatorDisplay />, div);
   });
   it('shows input field', () => {
-    const inputField = <div className="calculator-display-input">Input</div>;
-    expect(wrapper.contains(inputField)).toEqual(true);
+    expect(wrapper.find('.calculator-display-input')).toBeTruthy();
   });
   it('shows result field', () => {
-    const resultField = <div className="calculator-display-result">Result</div>;
-    expect(wrapper.contains(resultField)).toEqual(true);
+    expect(wrapper.find('.calculator-display-result')).toBeTruthy();
   });
 });
