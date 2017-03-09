@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -15,6 +15,11 @@ class CalculatorDisplay extends Component {
       </div>
     );
   }
+}
+
+CalculatorDisplay.propTypes = {
+  setInput: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {
