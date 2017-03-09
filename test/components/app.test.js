@@ -1,38 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme';
-
-// import TestUtils from 'react-addons-test-utils';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import reducers from '../../src/reducers';
+import { shallow } from 'enzyme';
 
 import App from '../../src/components/app';
 import CalculatorDisplay from '../../src/components/calculator_display';
 import CalculatorKeypad from '../../src/components/calculator_display';
 
+function setup() {
+  const props = {
+    // setInput: jest.fn(),
+    // input: '12345'
+  };
+
+  const enzymeWrapper = shallow(<App {...props} />);
+
+  return {
+    props,
+    enzymeWrapper
+  };
+}
+
 describe('App', () => {
-  let wrapper;
+  let enzymeWrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    ({ enzymeWrapper } = setup());
   });
 
   it('renders without crashing', () => {
-    const div = document.createElement('div');
-    const context = { input: '12345' };
-    const app = mount(<App />, { context })
-    // const app = TestUtils.renderIntoDocument(
-    //   <Provider store={createStore(reducers)}>
-    //   </Provider>
-    // );
-    ReactDOM.render(app, div);
-    // ReactDOM.render(app, div);
+    expect(enzymeWrapper.find('div').hasClass('calculator')).toBe(true);
   });
   it('shows display', () => {
-    expect(wrapper.find(CalculatorDisplay)).toBeTruthy();
+    expect(enzymeWrapper.find('CalculatorDisplay')).toBeTruthy();
   });
   it('shows keypad', () => {
-    expect(wrapper.find(CalculatorKeypad)).toBeTruthy();
+    expect(enzymeWrapper.find('CalculatorKeypad')).toBeTruthy();
   });
 });

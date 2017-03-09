@@ -7,7 +7,7 @@ import '../../style/style.css';
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="calculator">
         <CalculatorDisplay />
         <CalculatorKeypad />
       </div>
