@@ -1,24 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 
-import CalculatorDisplay from '../../src/components/calculator_display';
+import { CalculatorDisplay } from '../../src/components/calculator_display';
+
+function setup() {
+  const props = {
+    setInput: jest.fn(),
+    input: '12345'
+  };
+
+  const enzymeWrapper = shallow(<CalculatorDisplay {...props} />);
+
+  return {
+    props,
+    enzymeWrapper
+  };
+}
 
 describe('CalculatorDisplay', () => {
-  let wrapper;
+  let enzymeWrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<CalculatorDisplay />);
+    ({ enzymeWrapper } = setup());
   });
 
-  it.skip('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<CalculatorDisplay />, div);
+  it('renders without crashing', () => {
+    expect(enzymeWrapper.hasClass('calculator-display')).toBe(true);
   });
-  it.skip('shows input field', () => {
-    expect(wrapper.find('.calculator-display-input')).toBeTruthy();
+  it('shows input field', () => {
+    expect(enzymeWrapper.find('.calculator-display-input')).toBeTruthy();
   });
-  it.skip('shows result field', () => {
-    expect(wrapper.find('.calculator-display-result')).toBeTruthy();
+  it('shows result field', () => {
+    expect(enzymeWrapper.find('.calculator-display-result')).toBeTruthy();
   });
 });

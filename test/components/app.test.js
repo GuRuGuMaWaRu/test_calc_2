@@ -6,15 +6,9 @@ import CalculatorDisplay from '../../src/components/calculator_display';
 import CalculatorKeypad from '../../src/components/calculator_display';
 
 function setup() {
-  const props = {
-    // setInput: jest.fn(),
-    // input: '12345'
-  };
-
-  const enzymeWrapper = shallow(<App {...props} />);
+  const enzymeWrapper = shallow(<App />);
 
   return {
-    props,
     enzymeWrapper
   };
 }
@@ -27,7 +21,7 @@ describe('App', () => {
   });
 
   it('renders without crashing', () => {
-    expect(enzymeWrapper.find('div').hasClass('calculator')).toBe(true);
+    expect(enzymeWrapper.hasClass('calculator')).toBe(true);
   });
   it('shows display', () => {
     expect(enzymeWrapper.find('CalculatorDisplay')).toBeTruthy();

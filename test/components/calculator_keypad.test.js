@@ -1,21 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 
 import CalculatorKeypad from '../../src/components/calculator_keypad';
 
+function setup() {
+  const enzymeWrapper = shallow(<CalculatorKeypad />);
+
+  return {
+    enzymeWrapper
+  };
+}
+
 describe('CalculatorKeypad', () => {
-  let wrapper;
+  let enzymeWrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<CalculatorKeypad />);
+    ({ enzymeWrapper } = setup());
   });
 
-  it.skip('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<CalculatorKeypad />, div);
+  it('renders without crashing', () => {
+    expect(enzymeWrapper.hasClass('calculator-keypad')).toBe(true);
   });
-  it.skip('shows 21 buttons', () => {
-    expect(wrapper.find('div').length).toBe(21);
+  it('shows 21 buttons', () => {
+    expect(enzymeWrapper.find('div').length).toBe(21);
   });
 });
