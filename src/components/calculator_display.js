@@ -4,10 +4,11 @@ import * as actions from '../actions';
 
 export class CalculatorDisplay extends Component {
   componentWillMount() {
-    this.props.setInput();
+    // this.props.setInput();
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="calculator-display">
         <div className="calculator-display-input">{this.props.input}</div>
