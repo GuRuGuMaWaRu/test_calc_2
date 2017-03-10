@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
 
 export class CalculatorDisplay extends Component {
   componentWillMount() {
@@ -19,7 +18,6 @@ export class CalculatorDisplay extends Component {
 }
 
 CalculatorDisplay.propTypes = {
-  setInput: PropTypes.func.isRequired,
   input: PropTypes.string.isRequired
 }
 
@@ -27,4 +25,4 @@ function mapStateToProps(state) {
   return { input: state.input }
 }
 
-export default connect(mapStateToProps, actions)(CalculatorDisplay);
+export default connect(mapStateToProps)(CalculatorDisplay);
