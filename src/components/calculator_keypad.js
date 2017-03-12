@@ -5,7 +5,13 @@ import * as actions from '../actions';
 class CalculatorKeypad extends Component {
   render() {
     const keys = ['C', '()', '%', '/', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='],
-          keypad = keys.map(key => <div key={key} className='calculator-keypad-key'>{ key }</div>);
+          keypad = keys.map(key => {
+            return (
+              <div
+                key={key}
+                className='calculator-keypad-key'
+                onClick={() => this.props.parseInput(key)}>{key}</div>
+            )});
     return (
       <div className='calculator-keypad'>
         { keypad }
@@ -16,11 +22,11 @@ class CalculatorKeypad extends Component {
 
 CalculatorKeypad.propTypes = {
   parseInput: PropTypes.func.isRequired,
-  input: PropTypes.string.isRequired
+  input: PropTypes.string
 }
 
 function mapStateToProps(state) {
-  return { input: state.input }
+  return { input: state.input.unparsedInput }
 }
 
 export default connect(mapStateToProps, actions)(CalculatorKeypad);
