@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class CalculatorKeypad extends Component {
+export class CalculatorKeypad extends Component {
   render() {
     const keys = ['C', '()', '%', '/', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='],
           keypad = keys.map(key => {
@@ -21,7 +21,7 @@ class CalculatorKeypad extends Component {
 }
 
 CalculatorKeypad.propTypes = {
-  parseInput: PropTypes.func.isRequired,
+  parseInput: PropTypes.func,
   input: PropTypes.string
 }
 

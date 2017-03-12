@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 export class CalculatorDisplay extends Component {
 
   render() {
-    console.log(this.props);
     return (
       <div className="calculator-display">
         <div className="calculator-display-input">{this.props.input}</div>

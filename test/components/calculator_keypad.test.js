@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-import CalculatorKeypad from '../../src/components/calculator_keypad';
+import { CalculatorKeypad } from '../../src/components/calculator_keypad';
 
 function setup() {
   const enzymeWrapper = shallow(<CalculatorKeypad />);
