@@ -8,7 +8,7 @@ body {
 }
 
 /*==============================================*/
-/* DISPLAY */
+/* DISPLAY
 /*==============================================*/
 
 .calculator-display {
@@ -35,7 +35,7 @@ body {
 }
 
 /*==============================================*/
-/* KEYPAD */
+/* KEYPAD
 /*==============================================*/
 
 .calculator-keypad {
@@ -54,7 +54,26 @@ body {
 }
 
 /*==============================================*/
-/* MEDIA QUERIES */
+/* MESSAGE
+/*==============================================*/
+
+.message {
+  color: #fff;
+  background-color: #444;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  text-align: center;
+  transition: opacity .3s ease-out;
+  opacity: 0;
+}
+
+.message.shown {
+  opacity: 1;
+}
+
+/*==============================================*/
+/* MEDIA QUERIES
 /*==============================================*/
 
 @media (min-width: 175px) {

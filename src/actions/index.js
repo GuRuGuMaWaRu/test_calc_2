@@ -9,7 +9,7 @@ export function parseInput(key, previousInput = '') {
 
   console.log(limit);
 
-  if (limit) {
+  if (limit.limit) {
     return {
       type: SHOW_MESSAGE,
       payload: limit.message
