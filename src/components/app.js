@@ -10,6 +10,7 @@ export default class App extends Component {
       <div className="calculator">
         <CalculatorDisplay />
         <CalculatorKeypad />
+        <div className="message"></div>
       </div>
     );
   }
