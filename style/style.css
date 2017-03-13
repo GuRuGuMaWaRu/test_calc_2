@@ -64,13 +64,16 @@ body {
   margin: 0 auto;
   border-radius: 10px;
   text-align: center;
-  transition: opacity .3s ease-out;
-  opacity: 0;
+  /*transition: opacity .3s;*/
 }
 
-.message.shown {
-  opacity: 1;
+.message.visible {
+  animation: showMessage 10s infinite;
 }
+
+/*.message.hidden {
+  opacity: 0;
+}*/
 
 /*==============================================*/
 /* MEDIA QUERIES
@@ -127,5 +130,24 @@ body {
     min-width: 125px; min-height: 110px;
     line-height: 110px;
     font-size: 2.2em;
+  }
+}
+
+/*==============================================*/
+/* ANIMATIONS
+/*==============================================*/
+
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
   }
 }

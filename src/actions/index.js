@@ -1,13 +1,12 @@
 import { inputCheck } from '../utils/parsers';
 import {
   SET_INPUT,
-  SHOW_MESSAGE
+  SHOW_MESSAGE,
+  CLEAR_MESSAGE
 } from './types';
 
 export function parseInput(key, previousInput = '') {
   const limit = inputCheck(key, previousInput);
-
-  console.log(limit);
 
   if (limit.limit) {
     return {
@@ -20,4 +19,11 @@ export function parseInput(key, previousInput = '') {
       payload: previousInput + key
     };
   }
+}
+
+export function clearMessage() {
+  return {
+    type: CLEAR_MESSAGE,
+    payload: ''
+  };
 }
