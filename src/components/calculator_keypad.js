@@ -9,7 +9,7 @@ export class CalculatorKeypad extends Component {
             return (
               <div
                 key={key}
-                className='calculator-keypad-key'
+                className='calculator-keypad-key unselectable'
                 onClick={() => this.props.parseInput(key, this.props.previousInput)}>{key}</div>
             )});
     return (

@@ -16,6 +16,6 @@ ReactDOM.render(
 );
 
 /*
-1 - add pointer cursor for buttons
-2 - disable mouse selection for buttons
+***1 - add pointer cursor for buttons
+***2 - disable mouse selection for buttons
 */

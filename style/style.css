@@ -51,6 +51,7 @@ body {
   line-height: 32px;
   font-size: 1.2em;
   text-align: center;
+  cursor: pointer;
 }
 
 /*==============================================*/
@@ -59,7 +60,7 @@ body {
 
 .message {
   color: #fff;
-  background-color: hsla(120, 0%, 0%, 0.5);
+  background-color: hsla(0, 0%, 0%, 0.5);
   max-width: 500px;
   margin: 0 auto;
   border-radius: 10px;
@@ -68,8 +69,18 @@ body {
   transition: opacity .5s;
 }
 
+/*==============================================*/
+/* HELPER CLASSES
+/*==============================================*/
+
 .visible {
   opacity: 1;
+}
+
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 /*==============================================*/
