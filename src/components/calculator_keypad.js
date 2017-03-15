@@ -26,7 +26,7 @@ CalculatorKeypad.propTypes = {
 }
 
 function mapStateToProps(state) {
-  return { previousInput: state.input.unparsedInput }
+  return { previousInput: state.input.parsed }
 }
 
 export default connect(mapStateToProps, actions)(CalculatorKeypad);

@@ -6,7 +6,7 @@ export class CalculatorDisplay extends Component {
   render() {
     return (
       <div className="calculator-display">
-        <div className="calculator-display-input">{this.props.input}</div>
+        <div className="calculator-display-input">{this.props.display}</div>
         <div className="calculator-display-result">Result</div>
       </div>
     );
@@ -14,11 +14,11 @@ export class CalculatorDisplay extends Component {
 }
 
 CalculatorDisplay.propTypes = {
-  input: PropTypes.string
+  display: PropTypes.string
 }
 
 function mapStateToProps(state) {
-  return { input: state.input.unparsedInput }
+  return { display: state.input.display }
 }
 
 export default connect(mapStateToProps)(CalculatorDisplay);

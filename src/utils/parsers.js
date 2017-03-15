@@ -84,7 +84,8 @@ export const parseInput = (previousInput, currentInput) => {
     }
   ];
 
-  if (currentInput === '()') { // add handlers depending on the number of opening/closing brackets
+  // add handlers depending on the number of opening/closing brackets
+  if (currentInput === '()') {
     const openingBrackets = previousInput.match(/\(/g),
           closingBrackets = previousInput.match(/\)/g),
           openingBracketsNr = openingBrackets ? openingBrackets.length : 0,
@@ -109,7 +110,22 @@ export const parseInput = (previousInput, currentInput) => {
     return regexp.test(currentInput);
   });
 
-  return chosenHandlers.reduce((a, b) => { //=== run accumulated input through all parser functions
+  //=== run accumulated input through all parser functions
+  return chosenHandlers.reduce((a, b) => {
     return a.replace(b.test, b.convert);
   }, previousInput + currentInput);
+}
+
+export const beautifyInput = (input) => {
+  function replaceNumber(_match, number) {
+    // solve issue when toLocaleString deletes decimal dot if it's the last symbol
+    if (number.endsWith('.')) {
+      number = Number(number);
+      return (number.toLocaleString('en-US', {maximumFractionDigits: 10})) + '.';
+    } else {
+      number = Number(number);
+      return number.toLocaleString('en-US', {maximumFractionDigits: 10});
+    }
+  }
+  return input.replace(/([\d\.]+)/g, replaceNumber);
 }
