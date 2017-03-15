@@ -2,7 +2,7 @@ import { inputCheck } from '../utils/parsers';
 import {
   SET_INPUT,
   SHOW_MESSAGE,
-  CLEAR_MESSAGE
+  HIDE_MESSAGE
 } from './types';
 
 export function parseInput(key, previousInput = '') {
@@ -11,7 +11,7 @@ export function parseInput(key, previousInput = '') {
   if (limit.limit) {
     return {
       type: SHOW_MESSAGE,
-      payload: limit.message
+      payload: {content: limit.message, show: true}
     };
   } else {
     return {
@@ -21,9 +21,9 @@ export function parseInput(key, previousInput = '') {
   }
 }
 
-export function clearMessage() {
+export function hideMessage() {
   return {
-    type: CLEAR_MESSAGE,
-    payload: ''
+    type: HIDE_MESSAGE,
+    payload: {show: false}
   };
 }

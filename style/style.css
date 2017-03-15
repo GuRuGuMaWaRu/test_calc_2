@@ -64,16 +64,13 @@ body {
   margin: 0 auto;
   border-radius: 10px;
   text-align: center;
-  /*transition: opacity .3s;*/
-}
-
-.message.visible {
-  animation: showMessage 10s infinite;
-}
-
-/*.message.hidden {
   opacity: 0;
-}*/
+  transition: opacity .5s;
+}
+
+.visible {
+  opacity: 1;
+}
 
 /*==============================================*/
 /* MEDIA QUERIES
@@ -131,34 +128,4 @@ body {
     line-height: 110px;
     font-size: 2.2em;
   }
-}
-
-/*==============================================*/
-/* ANIMATIONS
-/*==============================================*/
-
-@keyframes showMessage {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: .8;
-  }
-  70% {
-    opacity: .5;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.test {
-  background-color: red;
-  color: white;
-  opacity: 0;
-  transition: opacity 1s;
-}
-
-.visible {
-  opacity: 1;
 }
