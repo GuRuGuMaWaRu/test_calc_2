@@ -1,4 +1,5 @@
 import { inputCheck, parseInput, beautifyInput } from '../utils/parsers';
+import { calculationParser } from '../utils/calculation';
 import {
   SET_INPUT,
   SHOW_MESSAGE,
@@ -22,7 +23,10 @@ export function sendInput(previousInput = '', currentInput) {
 
   return {
     type: SET_INPUT,
-    payload: {parsed: parsedInput, display: beautifyInput(parsedInput), result: null}
+    payload: {
+      parsed: parsedInput,
+      display: beautifyInput(parsedInput),
+      result: calculationParser(parsedInput)}
   };
 }
 
