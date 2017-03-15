@@ -29,6 +29,11 @@ describe('checkForExponential', () => {
 });
 
 describe('calculationParser', () => {
+  it('performs simple and complex calculations', () => {
+    expect(calculationParser('6/5/3/76/656')).toEqual('0.0000080231');
+    expect(calculationParser('6/5/3/76/656/4')).toEqual('0.0000020058');
+    expect(calculationParser('6/5/3/76/656/4/9')).toEqual('0.0000020058');
+  });
   it('returns input if there is only one number without brackets and operators', () => {
     expect(calculationParser('6546')).toEqual('6,546');
   });
