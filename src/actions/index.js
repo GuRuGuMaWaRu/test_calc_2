@@ -6,12 +6,12 @@ import {
 } from './types';
 
 export function parseInput(key, previousInput = '') {
-  const limit = inputCheck(key, previousInput);
+  const limitMessage = inputCheck(key, previousInput);
 
-  if (limit.limit) {
+  if (limitMessage.length > 0) {
     return {
       type: SHOW_MESSAGE,
-      payload: {content: limit.message, show: true}
+      payload: {content: limitMessage, show: true}
     };
   } else {
     return {

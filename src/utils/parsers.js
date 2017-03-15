@@ -18,15 +18,14 @@ const maxCharacterNumber = (previousInput) => {
 }
 
 export const inputCheck = (value, previousInput) => {
-  let result = {limit: false, message: ''};
   if (maxCharacterNumber(previousInput)) {
-    result = {limit: true, message: 'Maximum number of characters reached: 100'};
+    return 'Maximum number of characters reached: 100';
   } else if (/[\d\.]/.test(value) && maxNumberLength(previousInput)) {
-    result = {limit: true, message: 'Maximum number of characters in a number: 15'};
+    return 'Maximum number of characters in a number: 15';
   } else if (/[\/\+\-\*]/.test(value) && maxOperatorNumber(previousInput)) {
-    result = {limit: true, message: 'Maximum number of operators: 20'};
+    return 'Maximum number of operators: 20';
   } else if (/\d/.test(value) && maxDecimalDotLength(previousInput)) {
-    result = {limit: true, message: 'Maximum number of digits after decimal dot: 10'};
+    return 'Maximum number of digits after decimal dot: 10';
   }
-  return result;
+  return '';
 }
