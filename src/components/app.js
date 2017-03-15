@@ -8,7 +8,7 @@ import '../../style/style.css';
 
 export class App extends Component {
   render() {
-    if (this.props.message) {
+    if (this.props.show) {
       window.setTimeout(() => {
         this.props.hideMessage();
       }, 1500);
