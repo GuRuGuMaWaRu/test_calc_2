@@ -17,15 +17,99 @@ const maxCharacterNumber = (previousInput) => {
   return previousInput.length === 100;
 }
 
-export const inputCheck = (value, previousInput) => {
+export const inputCheck = (previousInput, currentInput) => {
   if (maxCharacterNumber(previousInput)) {
     return 'Maximum number of characters reached: 100';
-  } else if (/[\d\.]/.test(value) && maxNumberLength(previousInput)) {
+  } else if (/[\d\.]/.test(currentInput) && maxNumberLength(previousInput)) {
     return 'Maximum number of characters in a number: 15';
-  } else if (/[\/\+\-\*]/.test(value) && maxOperatorNumber(previousInput)) {
+  } else if (/[\/\+\-\*]/.test(currentInput) && maxOperatorNumber(previousInput)) {
     return 'Maximum number of operators: 20';
-  } else if (/\d/.test(value) && maxDecimalDotLength(previousInput)) {
+  } else if (/\d/.test(currentInput) && maxDecimalDotLength(previousInput)) {
     return 'Maximum number of digits after decimal dot: 10';
   }
   return '';
+}
+
+export const parseInput = (previousInput, currentInput) => {
+  const handlers = [
+    {
+      value: /\+\/\-/,
+      test: /\(\-(\d+)?\+\/\-$/, //=== remove a negative sign
+      convert: '$1'
+    },
+    {
+      value: /\+\/\-/,
+      test: /(\d+)?\+\/\-$/, //=== add a negative sign
+      convert: '(-$1'
+    },
+    {
+      value: /\d/,
+      test: /(^|[\/\+\-\*\(])0(\d)/, //=== solve leading zero issue
+      convert: '$1$2'
+    },
+    {
+      value: /\./,
+      test: /(^|[\/\+\-\*])(\.)/, //=== insert zero before leading decimal dot
+      convert: '$10$2'
+    },
+    {
+      value: /\./,
+      test: /\b(\d+\.)(\d+)?(\.)/, //=== solve duplicate decimal dot issue
+      convert: '$1$2'
+    },
+    {
+      value: /[\/\+\-\*]/,
+      test: /^[\/\+\-\*]/, //=== solve leading operator issue
+      convert: ''
+    },
+    {
+      value: /[\/\+\-\*]/,
+      test: /[\/\+\-\*](?=[\/\+\-\*])/, //=== solve consecutive operators issue
+      convert: ''
+    },
+    {
+      value: /[\/\+\*]/,
+      test: /(\()[\/\+\*]/, //=== solve "(+", "(*", and "(/" issue
+      convert: '$1'
+    },
+    {
+      value: /\(\)/,
+      test: /^(\(+)?\)/, //=== solve leading brackets issue
+      convert: '$1'
+    },
+    {
+      value: /\(\)/,
+      test: /([\/\+\-\*])\(\)/, //=== solve 'input opening bracket after an operator' issue
+      convert: '$1('
+    }
+  ];
+
+  if (currentInput === '()') { // add handlers depending on the number of opening/closing brackets
+    const openingBrackets = previousInput.match(/\(/g),
+          closingBrackets = previousInput.match(/\)/g),
+          openingBracketsNr = openingBrackets ? openingBrackets.length : 0,
+          closingBracketsNr = closingBrackets ? closingBrackets.length : 0;
+    if (openingBracketsNr > closingBracketsNr) {
+      handlers.push({
+        value: /\(\)/,
+        test: /(\d|\.)\(\)/,
+        convert: '$1)'
+      });
+    } else {
+      handlers.push({
+        value: /\(\)/,
+        test: /(\d|\.|\))\(\)/,
+        convert: '$1*('
+      });
+    }
+  }
+
+  const chosenHandlers = handlers.filter(handler => {
+    let regexp = handler.value;
+    return regexp.test(currentInput);
+  });
+
+  return chosenHandlers.reduce((a, b) => { //=== run accumulated input through all parser functions
+    return a.replace(b.test, b.convert);
+  }, previousInput + currentInput);
 }
