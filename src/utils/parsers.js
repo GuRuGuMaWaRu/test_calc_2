@@ -1,19 +1,19 @@
-const maxOperatorNumber = (previousInput) => {
+export const maxOperatorNumber = (previousInput) => {
   const operators = previousInput.match(/[\/\+\-\*]/g);
   return operators && operators.length === 20;
 }
 
-const maxNumberLength = (previousInput) => {
+export const maxNumberLength = (previousInput) => {
   const lastNumberLength = /(?:[\/\+\-\*\(])?([\d\.]+)$/.exec(previousInput);
   return lastNumberLength && lastNumberLength[1].length === 15;
 }
 
-const maxDecimalDotLength = (previousInput) => {
+export const maxDecimalDotLength = (previousInput) => {
   const afterDecimalDot = /\.(\d+)$/.exec(previousInput);
   return afterDecimalDot && afterDecimalDot[1].length === 10;
 }
 
-const maxCharacterNumber = (previousInput) => {
+export const maxCharacterNumber = (previousInput) => {
   return previousInput.length === 100;
 }
 

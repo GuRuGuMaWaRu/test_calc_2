@@ -1,4 +1,4 @@
-const tooLarge = (input) => { // check if the number is too large
+export const tooLarge = (input) => { // check if the number is too large
   let inputInString = input.toString(10);
 
   if (inputInString.indexOf('e') !== -1)
@@ -9,7 +9,7 @@ const tooLarge = (input) => { // check if the number is too large
   return inputInString.length > 15;
 }
 
-const checkForExponential = (input) => { // turn a large number into exponential
+export const checkForExponential = (input) => { // turn a large number into exponential
   if (tooLarge(input)) {
     return input.toExponential(8);
   } else {
@@ -17,7 +17,7 @@ const checkForExponential = (input) => { // turn a large number into exponential
   }
 }
 
-const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
+export const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
   const floatingPoint = firstNumber.indexOf('.') !== -1 || secondNumber.indexOf('.') !== -1;
 
   if (floatingPoint) { // convert string numbers into true numbers
@@ -42,7 +42,7 @@ const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
   }
 }
 
-const calculateOuter = (input) => {
+export const calculateOuter = (input) => {
   if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?$/.test(input)) { // return if only one number is left
     if (input.indexOf('e') === -1) {
       input = Number(input);
@@ -57,7 +57,7 @@ const calculateOuter = (input) => {
   }
 }
 
-const calculateBracketedExpression = (input) => {
+export const calculateBracketedExpression = (input) => {
   const expressionStart = input.lastIndexOf('(');
   const expressionEnd = input.indexOf(')', expressionStart) === -1
     ? input.length

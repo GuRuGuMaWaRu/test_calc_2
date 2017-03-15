@@ -26,7 +26,8 @@ export function sendInput(previousInput = '', currentInput) {
     payload: {
       parsed: parsedInput,
       display: beautifyInput(parsedInput),
-      result: calculationParser(parsedInput)}
+      result: calculationParser(parsedInput)
+    }
   };
 }
 
