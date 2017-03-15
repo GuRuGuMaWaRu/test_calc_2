@@ -9,6 +9,7 @@ export default function(state = {}, action) {
       return { ...state, message: action.payload};
     case CLEAR_MESSAGE:
       return { ...state, message: ''};
-  };
-  return state;
+    default:
+      return state;
+  }
 }

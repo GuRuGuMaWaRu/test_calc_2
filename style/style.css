@@ -141,8 +141,8 @@ body {
   0% {
     opacity: 0;
   }
-  30% {
-    opacity: 1;
+  10% {
+    opacity: .8;
   }
   70% {
     opacity: .5;
@@ -150,4 +150,15 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+.test {
+  background-color: red;
+  color: white;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.visible {
+  opacity: 1;
 }

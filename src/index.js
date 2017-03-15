@@ -14,3 +14,8 @@ ReactDOM.render(
   </Provider>
   , document.querySelector('.container')
 );
+
+/*
+1 - add pointer cursor for buttons
+2 - disable mouse selection for buttons
+*/

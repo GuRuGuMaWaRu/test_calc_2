@@ -8,11 +8,20 @@ import CalculatorKeypad from './calculator_keypad';
 import '../../style/style.css';
 
 export class App extends Component {
+  componentDidMount() {
+      window.setTimeout(() => {
+        document.querySelector('.test').className = 'test visible';
+      }, 1000);
+      window.setTimeout(() => {
+        document.querySelector('.test').className = 'test';
+      }, 4000);
+  }
+
   render() {
     if (this.props.message) {
       window.setTimeout(() => {
         this.props.clearMessage();
-      }, 1000);
+      }, 1500);
     }
 
     return (
@@ -20,6 +29,7 @@ export class App extends Component {
         <CalculatorDisplay />
         <CalculatorKeypad />
         <div className={`message${(this.props.message ? ' visible' : '')}`}>{this.props.message}</div>
+        <div className="test">This is a test</div>
       </div>
     );
   }
