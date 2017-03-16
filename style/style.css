@@ -1,5 +1,6 @@
 body {
   background-color: hsla(220, 86%, 95%, 1);
+  color: hsla(220, 86%, 20%, 1);
 }
 
 .container {
@@ -42,10 +43,20 @@ body {
 
 .calculator-keypad-additional {
   background-color: #fff;
+  color: hsla(220, 26%, 70%, 1);
   max-width: 500px;
   margin: 0 auto;
   display: flex;
   justify-content: flex-end;
+  transition: color .2s;
+}
+
+.calculator-keypad-additional:hover {
+  color: hsla(220, 26%, 50%, 1);
+}
+
+.calculator-keypad-additional:active {
+  color: hsla(220, 26%, 20%, 1);
 }
 
 .calculator-keypad-delete {
