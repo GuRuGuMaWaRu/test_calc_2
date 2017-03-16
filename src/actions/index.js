@@ -18,8 +18,7 @@ export function sendInput(previousInput = '', currentInput) {
   }
 
   //=== parse input
-  const parsedInput = parseInput(previousInput, currentInput),
-        readyInput = {};
+  const parsedInput = parseInput(previousInput, currentInput);
 
   return {
     type: SET_INPUT,
