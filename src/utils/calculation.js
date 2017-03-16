@@ -9,19 +9,8 @@ export const tooLarge = (input) => { // check if the number is too large
   return inputInString.length > 15;
 }
 
-export const tooSmall = (input) => {
-  // let inputInString = input.toString(10);
-  //
-  // if (inputInString.indexOf('e-') !== -1)
-  //   return true;
-  //
-  // inputInString = inputInString.slice(0, inputInString.indexOf('.'));
-  //
-  // return inputInString.length > 15;
-}
-
 export const checkForExponential = (input) => { // turn a large number into exponential
-  if (tooLarge(input) || tooSmall(input)) {
+  if (tooLarge(input)) {
     return input.toExponential(8);
   } else {
     return input;
