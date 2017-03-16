@@ -1,4 +1,7 @@
-import { SET_INPUT } from '../actions/types';
+import {
+  SET_INPUT,
+  CLEAR_INPUT
+ } from '../actions/types';
 
 export default function(state = {}, action) {
   switch(action.type) {
@@ -8,6 +11,13 @@ export default function(state = {}, action) {
         parsed: action.payload.parsed,
         display: action.payload.display,
         result: action.payload.result
+      };
+    case CLEAR_INPUT:
+      return {
+        ...state,
+        parsed: '',
+        display: '',
+        result: ''
       };
     default:
       return state;
