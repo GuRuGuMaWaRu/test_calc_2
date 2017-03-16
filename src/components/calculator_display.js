@@ -6,8 +6,8 @@ export class CalculatorDisplay extends Component {
   render() {
     return (
       <div className="calculator-display">
-        <div className="calculator-display-input">{this.props.display}</div>
-        <div className="calculator-display-result">{this.props.result}</div>
+        <div className="calculator-display-input padding">{this.props.display}</div>
+        <div className="calculator-display-result padding">{this.props.result}</div>
       </div>
     );
   }

@@ -12,9 +12,17 @@ export class CalculatorKeypad extends Component {
                 className='calculator-keypad-key unselectable'
                 onClick={() => this.props.sendInput(this.props.previousInput, key)}>{key}</div>
             )});
+
     return (
-      <div className='calculator-keypad'>
-        { keypad }
+      <div>
+        <div className='calculator-keypad-additional'>
+          {/* <div className='calculator-keypad-add-delete'> */}
+            <span className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'></span>
+          {/* </div> */}
+        </div>
+        <div className='calculator-keypad'>
+          { keypad }
+        </div>
       </div>
     );
   }
