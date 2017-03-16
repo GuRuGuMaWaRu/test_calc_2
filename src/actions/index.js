@@ -7,6 +7,19 @@ import {
   HIDE_MESSAGE
 } from './types';
 
+export function deleteInput(parsedInput) {
+  const updatedInput = parsedInput.slice(0, -1);
+
+  return {
+    type: SET_INPUT,
+    payload: {
+      parsed: updatedInput,
+      display: beautifyInput(updatedInput),
+      result: calculationParser(updatedInput)
+    }
+  };
+}
+
 export function sendInput(previousInput = '', currentInput) {
   const limitMessage = inputCheck(previousInput, currentInput);
 

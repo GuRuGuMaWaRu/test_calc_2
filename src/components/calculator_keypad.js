@@ -10,15 +10,14 @@ export class CalculatorKeypad extends Component {
               <div
                 key={key}
                 className='calculator-keypad-key unselectable'
-                onClick={() => this.props.sendInput(this.props.previousInput, key)}>{key}</div>
+                onClick={() => this.props.sendInput(this.props.parsedInput, key)}>{key}</div>
             )});
 
     return (
       <div>
         <div className='calculator-keypad-additional'>
-          {/* <div className='calculator-keypad-add-delete'> */}
-            <span className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'></span>
-          {/* </div> */}
+          <span onClick={() => this.props.deleteInput(this.props.parsedInput)}
+            className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'></span>
         </div>
         <div className='calculator-keypad'>
           { keypad }
@@ -29,12 +28,13 @@ export class CalculatorKeypad extends Component {
 }
 
 CalculatorKeypad.propTypes = {
-  parseInput: PropTypes.func,
-  previousInput: PropTypes.string
+  deleteInput: PropTypes.func,
+  previousInput: PropTypes.string,
+  parsedInput: PropTypes.string
 }
 
 function mapStateToProps(state) {
-  return { previousInput: state.input.parsed }
+  return { parsedInput: state.input.parsed }
 }
 
 export default connect(mapStateToProps, actions)(CalculatorKeypad);
