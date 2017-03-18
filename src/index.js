@@ -18,4 +18,8 @@ ReactDOM.render(
 /*
 ***1 - add pointer cursor for buttons
 ***2 - disable mouse selection for buttons
+***3 - solve issue with '=' - the new parsed number is localized - need fix that
+3 - different color for the displayed result after '=' is pressed
+4 - different color for operators
+5 - font-size and length restriction
 */

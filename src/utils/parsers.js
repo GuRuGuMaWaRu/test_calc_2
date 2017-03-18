@@ -129,3 +129,8 @@ export const beautifyInput = (input) => {
   }
   return input.replace(/([\d\.]+)/g, replaceNumber);
 }
+
+export const beautifyResult = (input) => {
+  const inputIntoNumber = Number(input);
+  return inputIntoNumber.toLocaleString('en-US', {maximumFractionDigits: 10});
+}

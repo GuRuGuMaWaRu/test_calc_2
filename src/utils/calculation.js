@@ -46,8 +46,9 @@ export const calculateOuter = (input) => {
   try {
     if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?$/.test(input)) { // return if only one number is left
       if (input.indexOf('e') === -1) {
-        input = Number(input);
-        return input.toLocaleString('en-US', {maximumFractionDigits: 10});
+        // input = Number(input);
+        // return input.toLocaleString('en-US', {maximumFractionDigits: 10});
+        return input;
       } else {
         return input;
       }

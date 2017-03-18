@@ -30,11 +30,10 @@ describe('checkForExponential', () => {
 
 describe('calculationParser', () => {
   it('performs simple and complex calculations', () => {
-    expect(calculationParser('6/5/3/76/656')).toEqual('0.0000080231');
-    expect(calculationParser('6/5/3/76/656/4')).toEqual('0.0000020058');
+    expect(calculationParser('6/5/3/76/656')).toEqual('0.000008023106546854943');
   });
   it('returns input if there is only one number without brackets and operators', () => {
-    expect(calculationParser('6546')).toEqual('6,546');
+    expect(calculationParser('6546')).toEqual('6546');
   });
   it('removes trailing operator', () => {
     expect(calculationParser('65+')).toEqual('65');
@@ -62,26 +61,17 @@ describe('calculationParser', () => {
     expect(calculationParser('(2-3)-1')).toEqual('-2');
     expect(calculationParser('(2-3)+1')).toEqual('0');
     expect(calculationParser('(2)*(2-3)')).toEqual('-2');
-    expect(calculationParser('(23)*(2-87)')).toEqual('-1,955');
+    expect(calculationParser('(23)*(2-87)')).toEqual('-1955');
   });
   it('deals separately with unclosed bracketed expressions', () => {
     expect(calculationParser('(5+5)+(')).toEqual('10');
-    expect(calculationParser('(23)*(2-87')).toEqual('-1,955');
+    expect(calculationParser('(23)*(2-87')).toEqual('-1955');
   })
   it('deals with negative numbers', () => {
     expect(calculationParser('-10')).toEqual('-10');
     expect(calculationParser('2-3')).toEqual('-1');
     expect(calculationParser('(-1+2')).toEqual('1');
     expect(calculationParser('5+(-2')).toEqual('3');
-  });
-  it('deals with long floating point numbers', () => {
-    expect(calculationParser('(5.32453245+2.123456789)')).toEqual('7.447989239');
-    expect(calculationParser('(5.1234567891+2.1234567891)')).toEqual('7.2469135782');
-  });
-  it('uses thousand separators', () => {
-    expect(calculationParser('28000')).toEqual('28,000');
-    expect(calculationParser('999+1')).toEqual('1,000');
-    expect(calculationParser('28000+100000')).toEqual('128,000');
   });
   it('deals with border cases', () => {
     expect(calculationParser('2+')).toEqual('2');
@@ -100,7 +90,7 @@ describe('calculateOuter', () => {
     expect(calculateOuter('5')).toEqual('5');
   });
   it('returns input unchanged if there are no operators', () => {
-    expect(calculateOuter('54667546')).toEqual('54,667,546');
+    expect(calculateOuter('54667546')).toEqual('54667546');
   });
   it('returns the result of complex math calculation', () => {
     expect(calculateOuter('5+5+5')).toEqual('15');

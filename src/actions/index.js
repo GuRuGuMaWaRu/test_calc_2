@@ -1,4 +1,4 @@
-import { inputCheck, parseInput, beautifyInput } from '../utils/parsers';
+import { inputCheck, parseInput, beautifyInput, beautifyResult } from '../utils/parsers';
 import { calculationParser } from '../utils/calculation';
 import {
   SET_INPUT,
@@ -15,7 +15,7 @@ export function deleteInput(parsedInput) {
     payload: {
       parsed: updatedInput,
       display: beautifyInput(updatedInput),
-      result: calculationParser(updatedInput)
+      result: beautifyResult(calculationParser(updatedInput))
     }
   };
 }
@@ -41,7 +41,7 @@ export function getInput(previousInput = '', currentInput) {
       type: SET_INPUT,
       payload: {
         parsed: calculationParser(previousInput),
-        display: calculationParser(previousInput),
+        display: beautifyResult(calculationParser(previousInput)),
         result: ''
       }
     };
@@ -54,7 +54,7 @@ export function getInput(previousInput = '', currentInput) {
     payload: {
       parsed: parsedInput,
       display: beautifyInput(parsedInput),
-      result: calculationParser(parsedInput)
+      result: beautifyResult(calculationParser(parsedInput))
     }
   };
 }
