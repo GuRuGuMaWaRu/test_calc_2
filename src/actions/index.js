@@ -20,7 +20,7 @@ export function deleteInput(parsedInput) {
   };
 }
 
-export function sendInput(previousInput = '', currentInput) {
+export function getInput(previousInput = '', currentInput) {
   const limitMessage = inputCheck(previousInput, currentInput);
   //=== don't do anything if any limit is triggered
   if (limitMessage.length > 0) {
@@ -33,6 +33,17 @@ export function sendInput(previousInput = '', currentInput) {
   if (currentInput === 'C') {
     return {
       type: CLEAR_INPUT
+    };
+  }
+  //=== check if '=' button is pressed
+  if (currentInput === '=') {
+    return {
+      type: SET_INPUT,
+      payload: {
+        parsed: calculationParser(previousInput),
+        display: calculationParser(previousInput),
+        result: ''
+      }
     };
   }
   //=== parse input

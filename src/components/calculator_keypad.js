@@ -10,7 +10,7 @@ export class CalculatorKeypad extends Component {
               <div
                 key={key}
                 className='calculator-keypad-key unselectable'
-                onClick={() => this.props.sendInput(this.props.parsedInput, key)}>{key}</div>
+                onClick={() => this.props.getInput(this.props.parsedInput, key)}>{key}</div>
             )});
 
     return (
@@ -28,8 +28,8 @@ export class CalculatorKeypad extends Component {
 }
 
 CalculatorKeypad.propTypes = {
+  getInput: PropTypes.func,
   deleteInput: PropTypes.func,
-  previousInput: PropTypes.string,
   parsedInput: PropTypes.string
 }
 
