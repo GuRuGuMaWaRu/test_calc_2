@@ -6,9 +6,7 @@ import { CalculatorKeypad } from '../../src/components/calculator_keypad';
 function setup() {
   const enzymeWrapper = shallow(<CalculatorKeypad />);
 
-  return {
-    enzymeWrapper
-  };
+  return { enzymeWrapper };
 }
 
 describe('CalculatorKeypad', () => {
@@ -22,6 +20,6 @@ describe('CalculatorKeypad', () => {
     expect(enzymeWrapper.hasClass('calculator-keypad')).toBe(true);
   });
   it('shows 21 buttons', () => {
-    expect(enzymeWrapper.find('div').length).toBe(21);
+    expect(enzymeWrapper.find('.calculator-keypad-main').find('div').length).toBe(21);
   });
 });

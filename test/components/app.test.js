@@ -8,9 +8,7 @@ import CalculatorKeypad from '../../src/components/calculator_display';
 function setup() {
   const enzymeWrapper = shallow(<App />);
 
-  return {
-    enzymeWrapper
-  };
+  return { enzymeWrapper };
 }
 
 describe('App', () => {

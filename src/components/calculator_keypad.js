@@ -14,12 +14,12 @@ export class CalculatorKeypad extends Component {
             )});
 
     return (
-      <div>
+      <div className='calculator-keypad'>
         <div className='calculator-keypad-additional'>
           <span onClick={() => this.props.deleteInput(this.props.parsedInput)}
             className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'></span>
         </div>
-        <div className='calculator-keypad'>
+        <div className='calculator-keypad-main'>
           { keypad }
         </div>
       </div>

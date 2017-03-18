@@ -130,9 +130,3 @@ describe('parseInput', () => {
     expect(parseInput('(2)*(2-3', '()')).toEqual('(2)*(2-3)');
   });
 });
-
-describe.skip('deleteInput', () => {
-  it('deletes the last character from input', () => {
-    expect(deleteInput('67+232')).toEqual('67+23');
-  });
-});

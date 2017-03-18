@@ -67,7 +67,7 @@ body {
   cursor: pointer;
 }
 
-.calculator-keypad {
+.calculator-keypad-main {
   max-width: 500px;
   margin: 0 auto;
   display: flex;
@@ -86,6 +86,10 @@ body {
 
 .calculator-keypad-key:hover {
   background-color: hsla(220, 100%, 88%, 1);
+}
+
+.calculator-keypad-key:active {
+  background-color: hsla(220, 100%, 84%, 1);
 }
 
 /*==============================================*/

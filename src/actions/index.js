@@ -9,7 +9,7 @@ import {
 
 export function deleteInput(parsedInput) {
   const updatedInput = parsedInput.slice(0, -1);
-
+  //=== return updated input
   return {
     type: SET_INPUT,
     payload: {
@@ -22,7 +22,6 @@ export function deleteInput(parsedInput) {
 
 export function sendInput(previousInput = '', currentInput) {
   const limitMessage = inputCheck(previousInput, currentInput);
-
   //=== don't do anything if any limit is triggered
   if (limitMessage.length > 0) {
     return {
@@ -30,17 +29,15 @@ export function sendInput(previousInput = '', currentInput) {
       payload: {content: limitMessage, show: true}
     };
   }
-
   //=== check if CLEAR button is pressed
   if (currentInput === 'C') {
     return {
       type: CLEAR_INPUT
     };
   }
-
   //=== parse input
   const parsedInput = parseInput(previousInput, currentInput);
-
+  //=== return parsed input
   return {
     type: SET_INPUT,
     payload: {
