@@ -75,9 +75,9 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
   return {
     type: SET_INPUT,
     payload: {
-      parsed: parsedInput,
-      display: beautifyInput(parsedInput),
-      result: beautifyResult(calculationParser(parsedInput))
+      parsed: updatedInput,
+      display: beautifyInput(updatedInput),
+      result: beautifyResult(calculationParser(updatedInput))
     }
   };
 }
