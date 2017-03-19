@@ -22,6 +22,8 @@ function parseKeyboardInput(event) {
     return complexValues[pressedKey];
   } else if (simpleValues.hasOwnProperty(pressedKey)) {
     return simpleValues[pressedKey];
+  } else {
+    return '';
   }
 }
 

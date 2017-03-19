@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 export class CalculatorKeypad extends Component {
+  componentWillUpdate() {
+    window.removeEventListener('keyup', this.handleKeyboard);
+  }
+
+  handleKeyboard = (event) => {
+    this.props.handleInput(event, true, this.props.parsedInput, '');
+  }
+
   render() {
     const keys = ['C', '()', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='];
     const parsedInput = this.props.parsedInput;
@@ -14,7 +22,7 @@ export class CalculatorKeypad extends Component {
               </div>
             )});
 
-    addEventListener('keyup', (event) => this.props.handleInput(event, true, parsedInput));
+    window.addEventListener('keyup', this.handleKeyboard);
 
     return (
       <div className='calculator-keypad'>
