@@ -19,7 +19,10 @@ ReactDOM.render(
 ***1 - add pointer cursor for buttons
 ***2 - disable mouse selection for buttons
 ***3 - solve issue with '=' - the new parsed number is localized - need fix that
-3 - different color for the displayed result after '=' is pressed
-4 - different color for operators
-5 - font-size and length restriction
+5 - keyboard input
+6 - different color for the displayed result after '=' is pressed
+7 - different color for operators
+8 - font-size and length restriction
+9 - SOLVE = deletion is the next in priority after multiplication
+  (addition & division dont have any priority and should be handled from left to right)
 */

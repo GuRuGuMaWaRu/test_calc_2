@@ -4,20 +4,25 @@ import * as actions from '../actions';
 
 export class CalculatorKeypad extends Component {
   render() {
-    const keys = ['C', '()', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='],
-          keypad = keys.map(key => {
+    const keys = ['C', '()', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='];
+    const parsedInput = this.props.parsedInput;
+    const keypad = keys.map(key => {
             return (
-              <div
-                key={key}
-                className='calculator-keypad-key unselectable'
-                onClick={() => this.props.getInput(this.props.parsedInput, key)}>{key}</div>
+              <div key={key} className='calculator-keypad-key unselectable'
+                onClick={(event) => this.props.handleInput(event, false, parsedInput, key)}>
+                {key}
+              </div>
             )});
+
+    addEventListener('keyup', (event) => this.props.handleInput(event, true, parsedInput));
 
     return (
       <div className='calculator-keypad'>
         <div className='calculator-keypad-additional'>
-          <span onClick={() => this.props.deleteInput(this.props.parsedInput)}
-            className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'></span>
+          <span
+            onClick={(event) => this.props.handleInput(event, false, parsedInput, 'delete')}
+            className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'
+            value='delete'></span>
         </div>
         <div className='calculator-keypad-main'>
           { keypad }
@@ -28,8 +33,10 @@ export class CalculatorKeypad extends Component {
 }
 
 CalculatorKeypad.propTypes = {
+  handleInput: PropTypes.func,
   getInput: PropTypes.func,
   deleteInput: PropTypes.func,
+  handleKeyboardInput: PropTypes.func,
   parsedInput: PropTypes.string
 }
 

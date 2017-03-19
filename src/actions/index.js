@@ -7,48 +7,71 @@ import {
   HIDE_MESSAGE
 } from './types';
 
-export function deleteInput(parsedInput) {
-  const updatedInput = parsedInput.slice(0, -1);
-  //=== return updated input
-  return {
-    type: SET_INPUT,
-    payload: {
-      parsed: updatedInput,
-      display: beautifyInput(updatedInput),
-      result: beautifyResult(calculationParser(updatedInput))
-    }
+function parseKeyboardInput(event) {
+  const simpleValues = {
+    48: '0', 49: '1', 50: '2', 51: '3', 52: '4',
+    53: '5', 54: '6', 55: '7', 56: '8', 57: '9',
+    67: 'C', 187: '=', 189: '-', 190: '.', 191: '/'
   };
+  const complexValues = {
+    48: '()', 53: '%', 56: '*', 57: '()', 67: 'C', 187: '+'
+  };
+  const pressedKey = event.keyCode;
+
+  if (event.shiftKey && complexValues.hasOwnProperty(pressedKey)) {
+    return complexValues[pressedKey];
+  } else if (simpleValues.hasOwnProperty(pressedKey)) {
+    return simpleValues[pressedKey];
+  }
 }
 
-export function getInput(previousInput = '', currentInput) {
-  const limitMessage = inputCheck(previousInput, currentInput);
-  //=== don't do anything if any limit is triggered
+export function handleInput(event, keyboardInput, parsedInput = '', currentInput) {
+  // handle keyboard input
+  if (keyboardInput) {
+    currentInput = parseKeyboardInput(event);
+  }
+  // handle DELETE action
+  if (currentInput === 'delete') {
+    const updatedInput = parsedInput.slice(0, -1);
+    return {
+      type: SET_INPUT,
+      payload: {
+        parsed: updatedInput,
+        display: beautifyInput(updatedInput),
+        result: beautifyResult(calculationParser(updatedInput))
+      }
+    };
+  }
+  // handle any limits
+  const limitMessage = inputCheck(parsedInput, currentInput);
   if (limitMessage.length > 0) {
     return {
       type: SHOW_MESSAGE,
-      payload: {content: limitMessage, show: true}
+      payload: {
+        content: limitMessage,
+        show: true
+      }
     };
   }
-  //=== check if CLEAR button is pressed
+  //=== handle CLEAR action
   if (currentInput === 'C') {
     return {
       type: CLEAR_INPUT
     };
   }
-  //=== check if '=' button is pressed
+  //=== handle '=' acttion
   if (currentInput === '=') {
     return {
       type: SET_INPUT,
       payload: {
-        parsed: calculationParser(previousInput),
-        display: beautifyResult(calculationParser(previousInput)),
+        parsed: calculationParser(parsedInput),
+        display: beautifyResult(calculationParser(parsedInput)),
         result: ''
       }
     };
   }
-  //=== parse input
-  const parsedInput = parseInput(previousInput, currentInput);
-  //=== return parsed input
+  // handle CALCULATION action
+  const updatedInput = parseInput(parsedInput, currentInput);
   return {
     type: SET_INPUT,
     payload: {
