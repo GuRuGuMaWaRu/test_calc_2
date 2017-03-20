@@ -157,6 +157,10 @@ export const parseKeyboardInput = (event) => {
 
 export const prepareForDisplay = (input) => {
   let preparedInput = input;
+  const newElement = document.createElement('p');
+  const newContent = document.createTextNode(input);
 
-  return preparedInput;
+  newElement.appendChild(newContent);
+
+  return newElement;
 }
