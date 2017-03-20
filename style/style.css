@@ -31,6 +31,7 @@ body {
   margin-bottom: 1.2em;
   font-size: 2em;
 }
+
 .calculator-display-result {
   color: #aaa;
   margin-bottom: .8em;
@@ -39,6 +40,18 @@ body {
 
 .operator {
   color: hsla(220, 90%, 70%, 1);
+}
+
+.size-large {
+  font-size: 1.2em;
+}
+
+.size-medium {
+  font-size: 1em;
+}
+
+.size-small {
+  font-size: 0.8em;
 }
 
 /*==============================================*/
