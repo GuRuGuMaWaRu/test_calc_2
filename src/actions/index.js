@@ -1,4 +1,10 @@
-import { inputCheck, parseInput, beautifyInput, beautifyResult } from '../utils/parsers';
+import {
+  inputCheck,
+  parseInput,
+  beautifyInput,
+  beautifyResult,
+  parseKeyboardInput
+} from '../utils/parsers';
 import { calculationParser } from '../utils/calculation';
 import {
   SET_INPUT,
@@ -6,26 +12,6 @@ import {
   SHOW_MESSAGE,
   HIDE_MESSAGE
 } from './types';
-
-function parseKeyboardInput(event) {
-  const simpleValues = {
-    48: '0', 49: '1', 50: '2', 51: '3', 52: '4',
-    53: '5', 54: '6', 55: '7', 56: '8', 57: '9',
-    67: 'C', 187: '=', 189: '-', 190: '.', 191: '/'
-  };
-  const complexValues = {
-    48: '()', 53: '%', 56: '*', 57: '()', 67: 'C', 187: '+'
-  };
-  const pressedKey = event.keyCode;
-
-  if (event.shiftKey && complexValues.hasOwnProperty(pressedKey)) {
-    return complexValues[pressedKey];
-  } else if (simpleValues.hasOwnProperty(pressedKey)) {
-    return simpleValues[pressedKey];
-  } else {
-    return '';
-  }
-}
 
 export function handleInput(event, keyboardInput, parsedInput = '', currentInput) {
   // handle keyboard input
@@ -72,8 +58,9 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
       }
     };
   }
-  // handle CALCULATION action
+  // handle CALCULATION
   const updatedInput = parseInput(parsedInput, currentInput);
+  console.log(updatedInput);
   return {
     type: SET_INPUT,
     payload: {

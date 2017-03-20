@@ -5,16 +5,23 @@ import {
   maxDecimalDotLength,
   maxCharacterNumber,
   parseInput,
-  deleteInput } from '../../src/utils/parsers';
+  parseKeyboardInput,
+  prepareForDisplay } from '../../src/utils/parsers';
 
-describe.skip('handleKeyboardInput', () => {
+describe('prepareForDisplay', () => {
+  it('puts the whole calculation string into a <p> tag', () => {
+    expect(prepareForDisplay('123+123')).toEqual('<p>123+123</p>');
+  });
+});
+
+describe('parseKeyboardInput', () => {
   it('returns a string for a pressed key', () => {
-    expect(handleKeyboardInput({keyCode: 48, shiftKey: false})).toEqual('0');
-    expect(handleKeyboardInput({keyCode: 49, shiftKey: false})).toEqual('1');
+    expect(parseKeyboardInput({keyCode: 48, shiftKey: false})).toEqual('0');
+    expect(parseKeyboardInput({keyCode: 49, shiftKey: false})).toEqual('1');
   });
   it('returns a string for a pressed key if SHIFT is held', () => {
-    expect(handleKeyboardInput({keyCode: 48, shiftKey: true})).toEqual('()');
-    expect(handleKeyboardInput({keyCode: 56, shiftKey: true})).toEqual('*');
+    expect(parseKeyboardInput({keyCode: 48, shiftKey: true})).toEqual('()');
+    expect(parseKeyboardInput({keyCode: 56, shiftKey: true})).toEqual('*');
   });
 });
 

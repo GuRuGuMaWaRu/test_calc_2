@@ -134,3 +134,29 @@ export const beautifyResult = (input) => {
   const inputIntoNumber = Number(input);
   return inputIntoNumber.toLocaleString('en-US', {maximumFractionDigits: 10});
 }
+
+export const parseKeyboardInput = (event) => {
+  const simpleValues = {
+    48: '0', 49: '1', 50: '2', 51: '3', 52: '4',
+    53: '5', 54: '6', 55: '7', 56: '8', 57: '9',
+    67: 'C', 187: '=', 189: '-', 190: '.', 191: '/'
+  };
+  const complexValues = {
+    48: '()', 53: '%', 56: '*', 57: '()', 67: 'C', 187: '+'
+  };
+  const pressedKey = event.keyCode;
+
+  if (event.shiftKey && complexValues.hasOwnProperty(pressedKey)) {
+    return complexValues[pressedKey];
+  } else if (simpleValues.hasOwnProperty(pressedKey)) {
+    return simpleValues[pressedKey];
+  } else {
+    return '';
+  }
+}
+
+export const prepareForDisplay = (input) => {
+  let preparedInput = input;
+
+  return preparedInput;
+}
