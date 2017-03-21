@@ -47,9 +47,12 @@ export const calculateOuter = (input) => {
     if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?$/.test(input)) { // return if only one number is left
       return input;
     } else {
-      return input.indexOf('*') === -1
-        ? calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\/\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // all operations but multiplication
-        : calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple));
+      return input.indexOf('*') !== -1
+        ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // multiplication first
+        : input.indexOf('/') !== -1
+          ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\/)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // division second
+          : calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
+
     }
   } catch (e) {
     console.log(e);

@@ -21,9 +21,9 @@ ReactDOM.render(
 ***3 - solve issue with '=' - the new parsed number is localized - need fix that
 ***5 - keyboard input
 6 - different color for the displayed result after '=' is pressed
-7 - different color for operators
-8 - font-size and length restriction
-9 - SOLVE = division is the next in priority after multiplication
+***7 - different color for operators
+***8 - font-size and length restriction
+***9 - SOLVE = division is the next in priority after multiplication
   (addition & subtraction dont have any priority and should be handled from left to right)
 10 - ripple animation
 */
