@@ -154,13 +154,3 @@ export const parseKeyboardInput = (event) => {
     return '';
   }
 }
-
-export const prepareForDisplay = (input) => {
-  let preparedInput = input;
-  const newElement = document.createElement('p');
-  const newContent = document.createTextNode(input);
-
-  newElement.appendChild(newContent);
-
-  return newElement;
-}

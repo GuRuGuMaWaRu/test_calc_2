@@ -27,6 +27,7 @@ body {
 }
 
 .calculator-display-input {
+  display: block;
   overflow: auto;
   margin-bottom: 1.2em;
   font-size: 2em;
@@ -35,7 +36,7 @@ body {
 .calculator-display-result {
   color: #aaa;
   margin-bottom: .8em;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .operator {
@@ -43,15 +44,15 @@ body {
 }
 
 .size-large {
-  font-size: 1.2em;
+  font-size: 0.6em;
 }
 
 .size-medium {
-  font-size: 1em;
+  font-size: 0.5em;
 }
 
 .size-small {
-  font-size: 0.8em;
+  font-size: 0.4em;
 }
 
 /*==============================================*/
@@ -169,8 +170,20 @@ body {
     line-height: 55px;
     font-size: 1.6em;
   }
+  .calculator-display-result {
+    font-size: 1.0em;
+  }
   .padding {
     padding: 0 25px;
+  }
+  .size-large {
+    font-size: 0.9em;
+  }
+  .size-medium {
+    font-size: 0.7em;
+  }
+  .size-small {
+    font-size: 0.5em;
   }
 }
 
@@ -189,10 +202,19 @@ body {
     font-size: 2.5em;
   }
   .calculator-display-result {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
   .padding {
     padding: 0 40px;
+  }
+  .size-large {
+    font-size: 1.0em;
+  }
+  .size-medium {
+    font-size: 0.8em;
+  }
+  .size-small {
+    font-size: 0.6em;
   }
 }
 
@@ -207,8 +229,20 @@ body {
     line-height: 90px;
     font-size: 2em;
   }
+  .calculator-display-result {
+    font-size: 1.4em;
+  }
   .padding {
     padding: 0 50px;
+  }
+  .size-large {
+    font-size: 1.1em;
+  }
+  .size-medium {
+    font-size: 0.9em;
+  }
+  .size-small {
+    font-size: 0.7em;
   }
 }
 
@@ -225,5 +259,14 @@ body {
   }
   .padding {
     padding: 0 53px;
+  }
+  .size-large {
+    font-size: 1.2em;
+  }
+  .size-medium {
+    font-size: 1em;
+  }
+  .size-small {
+    font-size: 0.8em;
   }
 }

@@ -30,17 +30,6 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
       }
     };
   }
-  // handle any limits
-  const limitMessage = inputCheck(parsedInput, currentInput);
-  if (limitMessage.length > 0) {
-    return {
-      type: SHOW_MESSAGE,
-      payload: {
-        content: limitMessage,
-        show: true
-      }
-    };
-  }
   //=== handle CLEAR action
   if (currentInput === 'C') {
     return {
@@ -55,6 +44,17 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
         parsed: calculationParser(parsedInput),
         display: beautifyResult(calculationParser(parsedInput)),
         result: ''
+      }
+    };
+  }
+  // handle any limits
+  const limitMessage = inputCheck(parsedInput, currentInput);
+  if (limitMessage.length > 0) {
+    return {
+      type: SHOW_MESSAGE,
+      payload: {
+        content: limitMessage,
+        show: true
       }
     };
   }

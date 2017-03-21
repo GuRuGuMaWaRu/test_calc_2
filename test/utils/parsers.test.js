@@ -5,14 +5,7 @@ import {
   maxDecimalDotLength,
   maxCharacterNumber,
   parseInput,
-  parseKeyboardInput,
-  prepareForDisplay } from '../../src/utils/parsers';
-
-describe('prepareForDisplay', () => {
-  it('puts the whole calculation string into a <p> tag', () => {
-    expect(prepareForDisplay('123+123')).toEqual('<p>123+123</p>');
-  });
-});
+  parseKeyboardInput } from '../../src/utils/parsers';
 
 describe('parseKeyboardInput', () => {
   it('returns a string for a pressed key', () => {
