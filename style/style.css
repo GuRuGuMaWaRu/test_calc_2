@@ -31,11 +31,14 @@ body {
   display: block;
   overflow: auto;
   padding: 20px;
+  margin-bottom: 20px;
   font-size: 2em;
 }
 
 .calculator-display-result {
   color: #aaa;
+  /*padding-top: 10px;*/
+  /*margin-top: .8em;*/
   margin-bottom: .8em;
   font-size: 0.8em;
 }
@@ -158,6 +161,18 @@ body {
     line-height: 50px;
     font-size: 1.4em;
   }
+  .calculator-display-result {
+    font-size: 1.0em;
+  }
+  .size-large {
+    font-size: 0.9em;
+  }
+  .size-medium {
+    font-size: 0.7em;
+  }
+  .size-small {
+    font-size: 0.5em;
+  }
 }
 
 @media (min-width: 260px) {
@@ -172,20 +187,16 @@ body {
     font-size: 1.6em;
   }
   .calculator-display-result {
-    font-size: 1.0em;
-  }
-  .padding {
-    padding-left: 12%;
-    padding-right: 12%;
+    font-size: 1.1em;
   }
   .size-large {
-    font-size: 0.9em;
+    font-size: 1.0em;
   }
   .size-medium {
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
   .size-small {
-    font-size: 0.5em;
+    font-size: 0.6em;
   }
 }
 
@@ -200,24 +211,17 @@ body {
     line-height: 70px;
     font-size: 1.8em;
   }
-  .calculator-display-input {
-    font-size: 2.5em;
-  }
   .calculator-display-result {
-    font-size: 1.2em;
-  }
-  .padding {
-    padding-left: 12%;
-    padding-right: 12%;
+    font-size: 1.3em;
   }
   .size-large {
-    font-size: 1.0em;
+    font-size: 1.1em;
   }
   .size-medium {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .size-small {
-    font-size: 0.6em;
+    font-size: 0.7em;
   }
 }
 
@@ -233,20 +237,16 @@ body {
     font-size: 2em;
   }
   .calculator-display-result {
-    font-size: 1.4em;
-  }
-  .padding {
-    padding-left: 12%;
-    padding-right: 12%;
+    font-size: 1.5em;
   }
   .size-large {
-    font-size: 1.1em;
+    font-size: 1.3em;
   }
   .size-medium {
-    font-size: 0.9em;
+    font-size: 1.1em;
   }
   .size-small {
-    font-size: 0.7em;
+    font-size: 0.9em;
   }
 }
 
@@ -265,13 +265,16 @@ body {
     padding-left: 10%;
     padding-right: 10%;
   }
+  .calculator-display-result {
+    font-size: 1.6em;
+  }
   .size-large {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
   .size-medium {
-    font-size: 1em;
+    font-size: 1.2em;
   }
   .size-small {
-    font-size: 0.8em;
+    font-size: 1.0em;
   }
 }
