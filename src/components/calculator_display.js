@@ -23,7 +23,7 @@ export class CalculatorDisplay extends Component {
             {
               inputToArray.map((char, index) => {
                 if (/[\/\+\-\*]/.test(char)) {
-                  return <span key={char+index} className='operator'>{char}</span>
+                  return <span key={char+index} className='operator'> {char} </span>
                 } else {
                   return char;
                 }

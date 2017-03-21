@@ -131,8 +131,13 @@ export const beautifyInput = (input) => {
 }
 
 export const beautifyResult = (input) => {
-  const inputIntoNumber = Number(input);
-  return inputIntoNumber.toLocaleString('en-US', {maximumFractionDigits: 10});
+  console.log(input);
+  if (input.indexOf('e') !== -1) {
+    return input;
+  } else {
+    const inputIntoNumber = Number(input);
+    return inputIntoNumber.toLocaleString('en-US', {maximumFractionDigits: 10});
+  }
 }
 
 export const parseKeyboardInput = (event) => {
@@ -146,7 +151,7 @@ export const parseKeyboardInput = (event) => {
     48: '()', 53: '%', 56: '*', 57: '()', 67: 'C', 187: '+'
   };
   const pressedKey = event.keyCode;
-  console.log(pressedKey);
+
   if (event.shiftKey && complexValues.hasOwnProperty(pressedKey)) {
     return complexValues[pressedKey];
   } else if (simpleValues.hasOwnProperty(pressedKey)) {

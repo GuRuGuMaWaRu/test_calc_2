@@ -45,13 +45,7 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
 export const calculateOuter = (input) => {
   try {
     if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?$/.test(input)) { // return if only one number is left
-      if (input.indexOf('e') === -1) {
-        // input = Number(input);
-        // return input.toLocaleString('en-US', {maximumFractionDigits: 10});
-        return input;
-      } else {
-        return input;
-      }
+      return input;
     } else {
       return input.indexOf('*') === -1
         ? calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\/\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // all operations but multiplication
