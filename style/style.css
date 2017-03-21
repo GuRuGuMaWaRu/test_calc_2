@@ -9,7 +9,8 @@ body {
 }
 
 .padding {
-  padding: 0 20px;
+  padding-left: 12%;
+  padding-right: 12%;
 }
 
 /*==============================================*/
@@ -18,7 +19,7 @@ body {
 
 .calculator-display {
   background-color: #fff;
-  height: 200px; max-width: 500px;
+  height: 300px; max-width: 500px;
   margin: 0 auto;
   text-align: right;
   display: flex;
@@ -29,7 +30,7 @@ body {
 .calculator-display-input {
   display: block;
   overflow: auto;
-  margin-bottom: 1.2em;
+  padding: 20px;
   font-size: 2em;
 }
 
@@ -174,7 +175,8 @@ body {
     font-size: 1.0em;
   }
   .padding {
-    padding: 0 25px;
+    padding-left: 12%;
+    padding-right: 12%;
   }
   .size-large {
     font-size: 0.9em;
@@ -205,7 +207,8 @@ body {
     font-size: 1.2em;
   }
   .padding {
-    padding: 0 40px;
+    padding-left: 12%;
+    padding-right: 12%;
   }
   .size-large {
     font-size: 1.0em;
@@ -233,7 +236,8 @@ body {
     font-size: 1.4em;
   }
   .padding {
-    padding: 0 50px;
+    padding-left: 12%;
+    padding-right: 12%;
   }
   .size-large {
     font-size: 1.1em;
@@ -258,7 +262,8 @@ body {
     font-size: 2.2em;
   }
   .padding {
-    padding: 0 53px;
+    padding-left: 10%;
+    padding-right: 10%;
   }
   .size-large {
     font-size: 1.2em;

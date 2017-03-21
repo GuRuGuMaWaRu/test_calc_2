@@ -60,7 +60,6 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
   }
   // handle CALCULATION
   const updatedInput = parseInput(parsedInput, currentInput);
-  console.log(updatedInput);
   return {
     type: SET_INPUT,
     payload: {

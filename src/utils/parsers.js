@@ -137,6 +137,7 @@ export const beautifyResult = (input) => {
 
 export const parseKeyboardInput = (event) => {
   const simpleValues = {
+    8: 'delete', 13: '=',
     48: '0', 49: '1', 50: '2', 51: '3', 52: '4',
     53: '5', 54: '6', 55: '7', 56: '8', 57: '9',
     67: 'C', 187: '=', 189: '-', 190: '.', 191: '/'
@@ -145,7 +146,7 @@ export const parseKeyboardInput = (event) => {
     48: '()', 53: '%', 56: '*', 57: '()', 67: 'C', 187: '+'
   };
   const pressedKey = event.keyCode;
-
+  console.log(pressedKey);
   if (event.shiftKey && complexValues.hasOwnProperty(pressedKey)) {
     return complexValues[pressedKey];
   } else if (simpleValues.hasOwnProperty(pressedKey)) {
