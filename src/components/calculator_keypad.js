@@ -15,12 +15,16 @@ export class CalculatorKeypad extends Component {
     const keys = ['C', '()', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='];
     const parsedInput = this.props.parsedInput;
     const keypad = keys.map(key => {
-            return (
-              <div key={key} className='calculator-keypad-key unselectable'
-                onClick={(event) => this.props.handleInput(event, false, parsedInput, key)}>
-                {key}
-              </div>
-            )});
+      //== set different colors for operator buttons & equality button
+      let outerRow = /^(C|\(\)|%|\/|\*|\+|\-)$/.test(key) ? 'outer-row' : '';
+      outerRow = /=/.test(key) ? 'equality' : outerRow;
+      //== create keypad
+      return (
+        <div key={key} className={`calculator-keypad-key unselectable ${outerRow}`}
+          onClick={(event) => this.props.handleInput(event, false, parsedInput, key)}>
+          {key}
+        </div>
+      )});
 
     window.addEventListener('keyup', this.handleKeyboard);
 
