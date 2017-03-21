@@ -1,14 +1,62 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { rippleEffect } from '../utils/visual';
 
 export class CalculatorKeypad extends Component {
   componentWillUpdate() {
     window.removeEventListener('keyup', this.handleKeyboard);
   }
 
+  ripple = (event) => {
+    event.preventDefault();
+    // 1 - setup
+    let posX = event.target.offsetLeft,
+      posY = event.target.offsetTop,
+      posXMain = document.querySelector('.calculator-keypad-main').offsetLeft,
+      posYMain = document.querySelector('.calculator-keypad-main').offsetTop,
+      buttonWidth = event.target.offsetWidth,
+      buttonHeight = event.target.offsetHeight;
+    // 2 - remove any old ripple element
+    // if (document.querySelector('.ripple')) {
+    //   document.querySelector('.ripple').parentNode.removeChild('.ripple');
+    // }
+    // 3 - add new ripple element
+    let newRipple = document.createElement('span');
+    newRipple.classList.add('ripple');
+    event.target.appendChild(newRipple);
+    // 4 - make it round
+    if (buttonWidth >= buttonHeight) {
+      buttonHeight = buttonWidth;
+    } else {
+      buttonWidth = buttonHeight;
+    }
+    // 5 - get the center of the element
+    var x = event.clientX - (posX + posXMain) - buttonHeight / 2;
+    var y = event.clientY - posYMain - buttonHeight / 2;
+    // 6 - add ripples CSS and start animation
+    document.querySelector('.ripple').classList.add('yellow');
+
+    let rippleElement = document.querySelector('.ripple');
+    rippleElement.style.width = buttonWidth;
+    rippleElement.style.height = buttonHeight;
+
+    // $(".ripple").css({
+    //   width: buttonWidth,
+    //   height: buttonHeight,
+    //   top: y + 'px',
+    //   left: x + 'px'
+    // }).addClass("rippleEffect");
+  }
+
   handleKeyboard = (event) => {
+    this.ripple(event);
     this.props.handleInput(event, true, this.props.parsedInput, '');
+  }
+
+  handleMouseAndTouch = (event, parsedInput, key) => {
+    this.ripple(event);
+    this.props.handleInput(event, false, parsedInput, key);
   }
 
   render() {
@@ -21,7 +69,7 @@ export class CalculatorKeypad extends Component {
       //== create keypad
       return (
         <div key={key} className={`calculator-keypad-key unselectable ${outerRow}`}
-          onClick={(event) => this.props.handleInput(event, false, parsedInput, key)}>
+          onClick={(event) => this.handleMouseAndTouch(event, parsedInput, key)}>
           {key}
         </div>
       )});

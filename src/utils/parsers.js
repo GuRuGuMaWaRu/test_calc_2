@@ -131,7 +131,6 @@ export const beautifyInput = (input) => {
 }
 
 export const beautifyResult = (input) => {
-  console.log(input);
   if (input.indexOf('e') !== -1) {
     return input;
   } else {

@@ -142,6 +142,10 @@ body {
   background-color: hsla(125, 56%, 50%, 1);
 }
 
+.yellow {
+  background-color: yellow;
+  color: red;
+}
 
 /*==============================================*/
 /* MESSAGE
