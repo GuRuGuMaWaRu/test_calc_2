@@ -5,8 +5,8 @@ import { CalculatorDisplay } from '../../src/components/calculator_display';
 
 function setup() {
   const props = {
-    setInput: jest.fn(),
-    input: '12345'
+    dislay: '12345',
+    result: '12345'
   };
 
   const enzymeWrapper = shallow(<CalculatorDisplay {...props} />);

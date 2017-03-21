@@ -5,45 +5,38 @@ export class CalculatorDisplay extends Component {
   render() {
     const { display, result } = this.props;
 
-    const inputToArray = Array.prototype.slice.call(display);
-    const testing = inputToArray.map((char, index) => {
-      if (/[\/\+\-\*]/.test(char)) {
-        return <span key={char+index} className='operator'>{char}</span>
-      } else {
-        return char;
-      }
-    });
-
-
     function prepareDisplay(input) {
-      let size;
+      if (input) {
+        const inputToArray = Array.prototype.slice.call(display);
+        let size;
 
-      if (input.length < 13) {
-        size = 'size-large';
-      } else if (input.length < 17) {
-        size = 'size-medium';
-      } else {
-        size = 'size-small';
+        if (input.length < 13) {
+          size = 'size-large';
+        } else if (input.length < 17) {
+          size = 'size-medium';
+        } else {
+          size = 'size-small';
+        }
+
+        return (
+          <div className={size}>
+            {
+              inputToArray.map((char, index) => {
+                if (/[\/\+\-\*]/.test(char)) {
+                  return <span key={char+index} className='operator'>{char}</span>
+                } else {
+                  return char;
+                }
+              })
+            }
+          </div>
+        );
       }
-
-      return (
-        <div className={size}>
-          {
-            inputToArray.map((char, index) => {
-              if (/[\/\+\-\*]/.test(char)) {
-                return <span key={char+index} className='operator'>{char}</span>
-              } else {
-                return char;
-              }
-            })
-          }
-        </div>
-      );
     }
 
     return (
       <div className="calculator-display">
-        <div className="calculator-display-input padding">{prepareDisplay(inputToArray)}</div>
+        <div className="calculator-display-input padding">{prepareDisplay(display)}</div>
         <div className="calculator-display-result padding">{result}</div>
       </div>
     );
