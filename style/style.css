@@ -30,9 +30,10 @@ body {
 .calculator-display-input {
   display: block;
   overflow: auto;
-  padding: 20px;
+  /*padding: 20px;*/
   margin-bottom: 20px;
   font-size: 2em;
+  transition: font-size 0.5s;
 }
 
 .calculator-display-result {
@@ -49,14 +50,17 @@ body {
 
 .size-large {
   font-size: 0.6em;
+  transition: font-size 0.1s;
 }
 
 .size-medium {
   font-size: 0.5em;
+  transition: font-size 0.1s;
 }
 
 .size-small {
   font-size: 0.4em;
+  transition: font-size 0.1s;
 }
 
 /*==============================================*/
