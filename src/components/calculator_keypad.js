@@ -17,12 +17,23 @@ export class CalculatorKeypad extends Component {
       posYMain = document.querySelector('.calculator-keypad-main').offsetTop,
       buttonWidth = event.target.offsetWidth,
       buttonHeight = event.target.offsetHeight;
+
+    // console.log('posX', posX);
+    // console.log('posY', posY);
+    // console.log('posXMain', posXMain);
+    // console.log('posYMain', posYMain);
+    // console.log('buttonWidth', buttonWidth);
+    // console.log('buttonHeight', buttonHeight);
+    // console.log('event.clientX', event.clientX);
+    // console.log('event.clientY', event.clientY);
+
     // 2 - remove any old ripple element
-    // if (document.querySelector('.ripple')) {
-    //   document.querySelector('.ripple').parentNode.removeChild('.ripple');
-    // }
+    if (document.querySelector('.ripple')) {
+      const child = document.querySelector('.ripple');
+      document.querySelector('.calculator-keypad-main').removeChild(child);
+    }
     // 3 - add new ripple element
-    let newRipple = document.createElement('span');
+    const newRipple = document.createElement('div');
     newRipple.classList.add('ripple');
     event.target.appendChild(newRipple);
     // 4 - make it round
@@ -32,14 +43,21 @@ export class CalculatorKeypad extends Component {
       buttonWidth = buttonHeight;
     }
     // 5 - get the center of the element
-    var x = event.clientX - (posX + posXMain) - buttonHeight / 2;
-    var y = event.clientY - posYMain - buttonHeight / 2;
+    const x = event.clientX - (posX + posXMain) - buttonHeight / 2;
+    const y = event.clientY - posYMain - buttonHeight / 2;
+    // console.log('x', x);
+    // console.log('y', y);
     // 6 - add ripples CSS and start animation
-    document.querySelector('.ripple').classList.add('yellow');
+    const rippleElement = document.querySelector('.ripple');
+    // console.log('rippleElement.style', rippleElement.style);
+    // console.log('rippleElement.style.height', rippleElement.style.height);
 
-    let rippleElement = document.querySelector('.ripple');
-    rippleElement.style.width = buttonWidth;
-    rippleElement.style.height = buttonHeight;
+    rippleElement.setAttribute('style', `width: ${buttonWidth}px; height: ${buttonHeight}px; top: 300px; left: 300px`);
+
+    // console.log('rippleElement.style', rippleElement.style);
+    // console.log('rippleElement.style.height', rippleElement.style.height);
+
+    document.querySelector('.ripple').classList.add('rippleEffect');
 
     // $(".ripple").css({
     //   width: buttonWidth,
@@ -50,7 +68,7 @@ export class CalculatorKeypad extends Component {
   }
 
   handleKeyboard = (event) => {
-    this.ripple(event);
+    // this.ripple(event);
     this.props.handleInput(event, true, this.props.parsedInput, '');
   }
 
