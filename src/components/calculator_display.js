@@ -35,9 +35,9 @@ export class CalculatorDisplay extends Component {
     }
 
     return (
-      <div className="calculator-display">
-        <div className="calculator-display-input padding">{prepareDisplay(display)}</div>
-        <div className="calculator-display-result padding">{result}</div>
+      <div className="display">
+        <div className="display-input padding">{prepareDisplay(display)}</div>
+        <div className="display-result padding">{result}</div>
       </div>
     );
   }

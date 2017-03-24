@@ -16,7 +16,7 @@ export class App extends Component {
     }
 
     return (
-      <div className="calculator">
+      <div>
         <CalculatorDisplay />
         <CalculatorKeypad />
         <div className={this.props.show ? 'message visible' : 'message'}>

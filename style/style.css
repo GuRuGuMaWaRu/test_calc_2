@@ -12,7 +12,7 @@ body {
 /* DISPLAY
 /*==============================================*/
 
-.calculator-display {
+.display {
   background-color: #fff;
   height: 300px; max-width: 500px;
   margin: 0 auto;
@@ -22,7 +22,7 @@ body {
   justify-content: flex-end;
 }
 
-.calculator-display-input {
+.display-input {
   display: block;
   overflow: auto;
   margin-bottom: 20px;
@@ -30,7 +30,7 @@ body {
   transition: font-size 0.5s;
 }
 
-.calculator-display-result {
+.display-result {
   color: #aaa;
   margin-bottom: .8em;
   font-size: 0.8em;
@@ -64,7 +64,7 @@ body {
 /* KEYPAD
 /*==============================================*/
 
-.calculator-keypad-additional {
+.keypad-additional {
   background-color: #fff;
   color: hsla(220, 26%, 70%, 1);
   max-width: 500px;
@@ -74,15 +74,15 @@ body {
   transition: color .2s;
 }
 
-.calculator-keypad-additional:hover {
+.keypad-additional:hover {
   color: hsla(220, 26%, 50%, 1);
 }
 
-.calculator-keypad-additional:active {
+.keypad-additional:active {
   color: hsla(220, 26%, 20%, 1);
 }
 
-.calculator-keypad-delete {
+.keypad-delete {
   min-width: 35px; min-height: 42px;
   line-height: 42px;
   font-size: 1em;
@@ -90,7 +90,7 @@ body {
   cursor: pointer;
 }
 
-.calculator-keypad-main {
+.keypad-main {
   background-color: hsla(220, 86%, 95%, 1);
   max-width: 500px;
   margin: 0 auto;
@@ -99,20 +99,24 @@ body {
   justify-content: center;
 }
 
-.calculator-keypad-key {
+.keypad-key {
   min-width: 35px; min-height: 32px;
   line-height: 32px;
   font-size: 1.2em;
   text-align: center;
   cursor: pointer;
+  overflow: hidden;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
   transition: background-color .2s;
 }
 
-.calculator-keypad-key:hover {
+.keypad-key:hover {
   background-color: hsla(220, 95%, 88%, 1);
 }
 
-.calculator-keypad-key:active {
+.keypad-key:active {
   background-color: hsla(220, 90%, 84%, 1);
 }
 
@@ -199,6 +203,10 @@ body {
   opacity: 1;
 }
 
+.ripple-effect {
+  animation: rippleDrop .4s linear;
+}
+
 @keyframes rippleDrop {
   100% {
     -moz-transform: scale(2);
@@ -213,7 +221,7 @@ body {
 /*==============================================*/
 
 @media (min-width: 175px) {
-  .calculator-keypad-key {
+  .keypad-key {
     min-width: 43px; min-height: 40px;
     line-height: 40px;
     font-size: 1.2em;
@@ -221,12 +229,12 @@ body {
 }
 
 @media (min-width: 212px) {
-  .calculator-keypad-key {
+  .keypad-key {
     min-width: 53px; min-height: 50px;
     line-height: 50px;
     font-size: 1.4em;
   }
-  .calculator-display-result {
+  .display-result {
     font-size: 1.0em;
   }
   .size-large {
@@ -241,17 +249,17 @@ body {
 }
 
 @media (min-width: 260px) {
-  .calculator-keypad-delete {
+  .keypad-delete {
     min-width: 45px; min-height: 52px;
     line-height: 52px;
     font-size: 1.2em;
   }
-  .calculator-keypad-key {
+  .keypad-key {
     min-width: 65px; min-height: 55px;
     line-height: 55px;
     font-size: 1.6em;
   }
-  .calculator-display-result {
+  .display-result {
     font-size: 1.1em;
   }
   .size-large {
@@ -266,17 +274,17 @@ body {
 }
 
 @media (min-width: 320px) {
-  .calculator-keypad-delete {
+  .keypad-delete {
     min-width: 50px; min-height: 60px;
     line-height: 60px;
     font-size: 1.5em;
   }
-  .calculator-keypad-key {
+  .keypad-key {
     min-width: 80px; min-height: 70px;
     line-height: 70px;
     font-size: 1.8em;
   }
-  .calculator-display-result {
+  .display-result {
     font-size: 1.3em;
   }
   .size-large {
@@ -291,17 +299,17 @@ body {
 }
 
 @media (min-width: 400px) {
-  .calculator-keypad-delete {
+  .keypad-delete {
     min-width: 50px; min-height: 60px;
     line-height: 60px;
     font-size: 1.6em;
   }
-  .calculator-keypad-key {
+  .keypad-key {
     min-width: 100px; min-height: 90px;
     line-height: 90px;
     font-size: 2em;
   }
-  .calculator-display-result {
+  .display-result {
     font-size: 1.5em;
   }
   .size-large {
@@ -316,12 +324,12 @@ body {
 }
 
 @media (min-width: 500px) {
-  .calculator-keypad-delete {
+  .keypad-delete {
     min-width: 50px; min-height: 60px;
     line-height: 60px;
     font-size: 1.7em;
   }
-  .calculator-keypad-key {
+  .keypad-key {
     min-width: 125px; min-height: 110px;
     line-height: 110px;
     font-size: 2.2em;
@@ -330,7 +338,7 @@ body {
     padding-left: 10%;
     padding-right: 10%;
   }
-  .calculator-display-result {
+  .display-result {
     font-size: 1.6em;
   }
   .size-large {

@@ -8,7 +8,7 @@ export class CalculatorKeypad extends Component {
     window.removeEventListener('keyup', this.handleKeyboard);
   }
 
-  ripple = (event) => {
+  ripple = (event, key) => {
     const buttonWidth = event.target.offsetWidth,
           buttonHeight = event.target.offsetHeight,
           rippleElement = document.querySelector('.ripple');
@@ -16,9 +16,9 @@ export class CalculatorKeypad extends Component {
     const rippleSize = buttonWidth > buttonHeight ? buttonWidth : buttonHeight,
           rippleX = event.clientX - rippleSize / 2,
           rippleY = event.clientY - rippleSize / 2;
-    //== activate ripple element
-    // rippleElement.classList.remove('ripple-inactive');
-    //== add ripple CSS and start animation
+
+    console.log(event.currentTarget);
+
     rippleElement.setAttribute('style',
       `width: ${rippleSize}px; height: ${rippleSize}px;
       top: ${rippleY}px; left: ${rippleX}px`);
@@ -27,7 +27,8 @@ export class CalculatorKeypad extends Component {
 
     window.setTimeout(() => {
       rippleElement.setAttribute('style',
-        `width: 0; height: 0; opacity: 1`);
+        `width: 0; height: 0;
+        opacity: 1`);
       rippleElement.classList.remove('ripple-effect');
     }, 400);
   }
@@ -38,20 +39,20 @@ export class CalculatorKeypad extends Component {
   }
 
   handleMouseAndTouch = (event, parsedInput, key) => {
-    this.ripple(event);
+    this.ripple(event, key);
     this.props.handleInput(event, false, parsedInput, key);
   }
 
   render() {
     const keys = ['C', '()', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '.', '0', '+/-', '='];
     const parsedInput = this.props.parsedInput;
+    //== create keypad
     const keypad = keys.map(key => {
       //== set different colors for operator buttons & equality button
       let outerRow = /^(C|\(\)|%|\/|\*|\+|\-)$/.test(key) ? 'outer-row' : '';
       outerRow = /=/.test(key) ? 'equality' : outerRow;
-      //== create keypad
       return (
-        <div key={key} className={`calculator-keypad-key unselectable ${outerRow}`}
+        <div key={key} className={`keypad-key ${outerRow}`}
           onClick={(event) => this.handleMouseAndTouch(event, parsedInput, key)}>
           {key}
         </div>
@@ -60,17 +61,17 @@ export class CalculatorKeypad extends Component {
     window.addEventListener('keyup', this.handleKeyboard);
 
     return (
-      <div className='calculator-keypad'>
-        <div className='calculator-keypad-additional'>
+      <div className='keypad'>
+        <div className='keypad-additional'>
           <span
             onClick={(event) => this.props.handleInput(event, false, parsedInput, 'delete')}
-            className='glyphicon glyphicon-arrow-left padding calculator-keypad-delete'
+            className='glyphicon glyphicon-arrow-left padding keypad-delete'
             value='delete'></span>
         </div>
-        <div className='calculator-keypad-main'>
+        <div className='keypad-main'>
           { keypad }
         </div>
-        <div className="ripple"></div>
+        <span className="ripple"></span>
       </div>
     );
   }
