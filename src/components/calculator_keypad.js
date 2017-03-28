@@ -9,28 +9,45 @@ export class CalculatorKeypad extends Component {
   }
 
   ripple = (event, key) => {
-    const buttonWidth = event.target.offsetWidth,
-          buttonHeight = event.target.offsetHeight,
-          rippleElement = document.querySelector('.ripple');
+    // Getting the div that the effect is relative to
+    var box = event.target,
+        // Creating the effect's div
+        create = document.createElement('div'),
+        // Getting the button's size, distance to top and left
+        boxWidth = box.offsetWidth,
+        boxHeight = box.offsetHeight,
+        boxY = box.getBoundingClientRect().top,
+        boxX = box.getBoundingClientRect().left,
+        // Getting the mouse position
+        mouseX = event.clientX,
+        mouseY = event.clientY,
+        // Mouse position relative to the box
+        rippleX = mouseX - boxX,
+        rippleY = mouseY - boxY,
+        // Calculate which is the farthest corner
+        rippleWidth = boxWidth / 2 < rippleX
+                        ? rippleX
+                        : boxWidth - rippleX,
+        rippleHeight = boxHeight / 2 < rippleY
+                        ? rippleY
+                        : boxHeight - rippleY,
+        // Distance to the farthest corner
+        boxSize = Math.sqrt(Math.pow(rippleWidth, 2) +
+                            Math.pow(rippleHeight, 2));
 
-    const rippleSize = buttonWidth > buttonHeight ? buttonWidth : buttonHeight,
-          rippleX = event.clientX - rippleSize / 2,
-          rippleY = event.clientY - rippleSize / 2;
+    // Creating and moving the effect div inside the button
+    box.appendChild(create);
 
-    console.log(event.currentTarget);
+    // Ripple style (size, position, color and border-radius)
+    create.setAttribute('data-rippleEffect', 'effect');
+    create.style.height = 2 * boxSize + 'px';
+    create.style.width = 2 * boxSize + 'px';
+    create.style.top = mouseY - boxY - boxSize + 'px';
+    create.style.left = mouseX - boxX - boxSize + 'px';
 
-    rippleElement.setAttribute('style',
-      `width: ${rippleSize}px; height: ${rippleSize}px;
-      top: ${rippleY}px; left: ${rippleX}px`);
-
-    rippleElement.classList.add('ripple-effect');
-
-    window.setTimeout(() => {
-      rippleElement.setAttribute('style',
-        `width: 0; height: 0;
-        opacity: 1`);
-      rippleElement.classList.remove('ripple-effect');
-    }, 400);
+    setTimeout(function () {
+        box.removeChild(create);
+    }, 800);
   }
 
   handleKeyboard = (event) => {
@@ -52,11 +69,14 @@ export class CalculatorKeypad extends Component {
       let outerRow = /^(C|\(\)|%|\/|\*|\+|\-)$/.test(key) ? 'outer-row' : '';
       outerRow = /=/.test(key) ? 'equality' : outerRow;
       return (
-        <div key={key} className={`keypad-key ${outerRow}`}
-          onClick={(event) => this.handleMouseAndTouch(event, parsedInput, key)}>
+        <div key={key}
+          className={`keypad-key ${outerRow}`}
+          onClick={(event) => this.handleMouseAndTouch(event, parsedInput, key)}
+          data-rippleEffect="button">
           {key}
         </div>
       )});
+
 
     window.addEventListener('keyup', this.handleKeyboard);
 

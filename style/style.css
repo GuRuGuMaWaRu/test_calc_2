@@ -105,6 +105,8 @@ body {
   font-size: 1.2em;
   text-align: center;
   cursor: pointer;
+  display: block;
+  /*position: relative;*/
   overflow: hidden;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -184,36 +186,72 @@ body {
 /* RIPPLE EFFECT
 /*==============================================*/
 
-.ripple {
-  width: 0; height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  -moz-transform: scale(0);
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  position: absolute;
-  opacity: 1;
+[data-rippleEffect="button"] {
+    /*background-color: rgba(0,0,0,0);*/
+    overflow: hidden;
+    position: relative;
 }
 
-.ripple-before {
-  width: 0; height: 0;
-  -moz-transform: scale(0);
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  opacity: 1;
-}
-
-.ripple-effect {
-  animation: rippleDrop .4s linear;
-}
-
-@keyframes rippleDrop {
-  100% {
-    -moz-transform: scale(2);
-    -webkit-transform: scale(2);
-    transform: scale(2);
+/* Ripple Effect style (background, border-radius, time) */
+[data-rippleEffect="effect"] {
+    animation: rippleEffect 800ms forwards;
+    -moz-animation: rippleEffect 800ms forwards;
+    -o-animation: rippleEffect 800ms forwards;
+    -webkit-animation: rippleEffect 800ms forwards;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 100%;
+    position: absolute;
     opacity: 0;
-  }
+}
+
+/* Effect animation */
+@-webkit-keyframes rippleEffect {
+    0% {
+        transform: scale(0.0);
+        -moz-transform: scale(0.0);
+        -ms-transform: scale(0.0);
+        -o-transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.0);
+        -moz-transform: scale(1.0);
+        -ms-transform: scale(1.0);
+        -o-transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+/* Effect animation */
+@keyframes rippleEffect {
+    0% {
+        transform: scale(0.0);
+        -moz-transform: scale(0.0);
+        -ms-transform: scale(0.0);
+        -o-transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.0);
+        -moz-transform: scale(1.0);
+        -ms-transform: scale(1.0);
+        -o-transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /*==============================================*/
