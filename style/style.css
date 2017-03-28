@@ -187,46 +187,46 @@ body {
 /*==============================================*/
 
 [data-rippleEffect="button"] {
-    /*background-color: rgba(0,0,0,0);*/
-    overflow: hidden;
-    position: relative;
+  /*background-color: rgba(0,0,0,0);*/
+  overflow: hidden;
+  position: relative;
 }
 
 /* Ripple Effect style (background, border-radius, time) */
 [data-rippleEffect="effect"] {
-    animation: rippleEffect 800ms forwards;
-    -moz-animation: rippleEffect 800ms forwards;
-    -o-animation: rippleEffect 800ms forwards;
-    -webkit-animation: rippleEffect 800ms forwards;
-    background-color: rgba(0,0,0,0.1);
-    border-radius: 100%;
-    position: absolute;
-    opacity: 0;
+  animation: rippleEffect 600ms forwards;
+  -moz-animation: rippleEffect 600ms forwards;
+  -o-animation: rippleEffect 600ms forwards;
+  -webkit-animation: rippleEffect 600ms forwards;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 100%;
+  position: absolute;
+  /*opacity: 0;*/
 }
 
 /* Effect animation */
 @-webkit-keyframes rippleEffect {
-    0% {
-        transform: scale(0.0);
-        -moz-transform: scale(0.0);
-        -ms-transform: scale(0.0);
-        -o-transform: scale(0.0);
-        -webkit-transform: scale(0.0);
-        opacity: 1;
-    }
+  0% {
+    transform: scale(0.0);
+    -moz-transform: scale(0.0);
+    -ms-transform: scale(0.0);
+    -o-transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+    opacity: 1;
+  }
 
-    50% {
-        opacity: 1;
-    }
+  50% {
+    opacity: 0.3;
+  }
 
-    100% {
-        transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        -o-transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(2.0);
+    -moz-transform: scale(2.0);
+    -ms-transform: scale(2.0);
+    -o-transform: scale(2.0);
+    -webkit-transform: scale(2.0);
+    opacity: 0;
+  }
 }
 
 /* Effect animation */
