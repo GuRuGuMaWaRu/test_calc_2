@@ -49,6 +49,11 @@ export const parseInput = (previousInput, currentInput) => {
     },
     {
       value: /\./,
+      test: /(\))(\.)/, //=== turn ")" into ")*0." when "." is entered
+      convert: '$1*0$2'
+    },
+    {
+      value: /\./,
       test: /(^|[\/\+\-\*])(\.)/, //=== insert zero before leading decimal dot
       convert: '$10$2'
     },
@@ -81,6 +86,11 @@ export const parseInput = (previousInput, currentInput) => {
       value: /\(\)/,
       test: /([\/\+\-\*])\(\)/, //=== solve 'input opening bracket after an operator' issue
       convert: '$1('
+    },
+    {
+      value: /[\d]/,
+      test: /(\))(\d)/, //=== add multiplication operator before a number that follows closing bracket
+      convert: '$1*$2'
     }
   ];
 
