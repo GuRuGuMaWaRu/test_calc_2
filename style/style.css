@@ -101,13 +101,11 @@ body {
 
 .keypad-key {
   width: 25%;
-  /*min-width: 35px; min-height: 32px;*/
   line-height: 32px;
   font-size: 1.2em;
   text-align: center;
   cursor: pointer;
   display: block;
-  /*position: relative;*/
   overflow: hidden;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -188,7 +186,6 @@ body {
 /*==============================================*/
 
 [data-rippleEffect="button"] {
-  /*background-color: rgba(0,0,0,0);*/
   overflow: hidden;
   position: relative;
 }
@@ -202,7 +199,6 @@ body {
   background-color: rgba(255,255,255,0.2);
   border-radius: 100%;
   position: absolute;
-  /*opacity: 0;*/
 }
 
 /* Effect animation */
@@ -261,7 +257,6 @@ body {
 
 @media (min-width: 175px) {
   .keypad-key {
-    /*min-width: 43px; min-height: 40px;*/
     line-height: 40px;
     font-size: 1.2em;
   }
@@ -269,7 +264,6 @@ body {
 
 @media (min-width: 212px) {
   .keypad-key {
-    /*min-width: 53px; min-height: 50px;*/
     line-height: 50px;
     font-size: 1.4em;
   }
@@ -294,7 +288,6 @@ body {
     font-size: 1.2em;
   }
   .keypad-key {
-    /*min-width: 65px; min-height: 55px;*/
     line-height: 55px;
     font-size: 1.6em;
   }
@@ -319,7 +312,6 @@ body {
     font-size: 1.5em;
   }
   .keypad-key {
-    /*min-width: 80px; min-height: 70px;*/
     line-height: 70px;
     font-size: 1.8em;
   }
@@ -344,7 +336,6 @@ body {
     font-size: 1.6em;
   }
   .keypad-key {
-    /*min-width: 100px; min-height: 90px;*/
     line-height: 90px;
     font-size: 2em;
   }
@@ -369,7 +360,6 @@ body {
     font-size: 1.7em;
   }
   .keypad-key {
-    /*min-width: 125px; min-height: 110px;*/
     line-height: 110px;
     font-size: 2.2em;
   }
