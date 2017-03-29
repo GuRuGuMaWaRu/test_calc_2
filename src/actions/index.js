@@ -14,10 +14,6 @@ import {
 } from './types';
 
 export function handleInput(event, keyboardInput, parsedInput = '', currentInput) {
-  // handle keyboard input
-  if (keyboardInput) {
-    currentInput = parseKeyboardInput(event);
-  }
   // handle DELETE action
   if (currentInput === 'delete') {
     const updatedInput = parsedInput.slice(0, -1);

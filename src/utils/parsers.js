@@ -156,6 +156,6 @@ export const parseKeyboardInput = (event) => {
   } else if (simpleValues.hasOwnProperty(pressedKey)) {
     return simpleValues[pressedKey];
   } else {
-    return '';
+    return null;
   }
 }

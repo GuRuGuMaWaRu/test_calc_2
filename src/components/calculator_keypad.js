@@ -2,61 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { rippleEffect } from '../utils/visual';
+import { parseKeyboardInput } from '../utils/parsers';
 
 export class CalculatorKeypad extends Component {
   componentWillUpdate() {
     window.removeEventListener('keyup', this.handleKeyboard);
   }
 
-  ripple = (event, key) => {
-    // Getting the div that the effect is relative to
-    var box = event.target,
-        // Creating the effect's div
-        create = document.createElement('div'),
-        // Getting the button's size, distance to top and left
-        boxWidth = box.offsetWidth,
-        boxHeight = box.offsetHeight,
-        boxY = box.getBoundingClientRect().top,
-        boxX = box.getBoundingClientRect().left,
-        // Getting the mouse position
-        mouseX = event.clientX,
-        mouseY = event.clientY,
-        // Mouse position relative to the box
-        rippleX = mouseX - boxX,
-        rippleY = mouseY - boxY,
-        // Calculate which is the farthest corner
-        rippleWidth = boxWidth / 2 < rippleX
-                        ? rippleX
-                        : boxWidth - rippleX,
-        rippleHeight = boxHeight / 2 < rippleY
-                        ? rippleY
-                        : boxHeight - rippleY,
-        // Distance to the farthest corner
-        boxSize = Math.sqrt(Math.pow(rippleWidth, 2) +
-                            Math.pow(rippleHeight, 2));
-
-    // Creating and moving the effect div inside the button
-    box.appendChild(create);
-
-    // Ripple style (size, position, color and border-radius)
-    create.setAttribute('data-rippleEffect', 'effect');
-    create.style.height = 2 * boxSize + 'px';
-    create.style.width = 2 * boxSize + 'px';
-    create.style.top = mouseY - boxY - boxSize + 'px';
-    create.style.left = mouseX - boxX - boxSize + 'px';
-
-    setTimeout(function () {
-        box.removeChild(create);
-    }, 800);
-  }
-
   handleKeyboard = (event) => {
-    // this.ripple(event);
-    this.props.handleInput(event, true, this.props.parsedInput, '');
+    const keyName = parseKeyboardInput(event);
+
+    if (keyName) {
+      if (keyName !== 'delete') {
+        const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
+        rippleEffect(event, true, pressedElement);
+      }
+      this.props.handleInput(event, true, this.props.parsedInput, keyName);
+    }
   }
 
   handleMouseAndTouch = (event, parsedInput, key) => {
-    this.ripple(event, key);
+    rippleEffect(event, false, null);
     this.props.handleInput(event, false, parsedInput, key);
   }
 
@@ -68,16 +34,18 @@ export class CalculatorKeypad extends Component {
       //== set different colors for operator buttons & equality button
       let outerRow = /^(C|\(\)|%|\/|\*|\+|\-)$/.test(key) ? 'outer-row' : '';
       outerRow = /=/.test(key) ? 'equality' : outerRow;
+
       return (
         <div key={key}
           className={`keypad-key ${outerRow}`}
           onClick={(event) => this.handleMouseAndTouch(event, parsedInput, key)}
+          data-key={key}
           data-rippleEffect="button">
           {key}
         </div>
       )});
 
-
+    //== listen for keyboard input
     window.addEventListener('keyup', this.handleKeyboard);
 
     return (
