@@ -54,6 +54,48 @@ describe('maxCharacterNumber', () => {
 });
 
 describe('parseInput', () => {
+  //=== %
+  it('does not enter percent after an operator', () => {
+    expect(parseInput('9+', '%')).toEqual('9+');
+    expect(parseInput('9-', '%')).toEqual('9-');
+    expect(parseInput('9*', '%')).toEqual('9*');
+    expect(parseInput('9/', '%')).toEqual('9/');
+    expect(parseInput('9%', '%')).toEqual('9%');
+  });
+  it('does not enter percent after an opening bracket', () => {
+    expect(parseInput('(', '%')).toEqual('(');
+  });
+  it('does not enter percent as a first character', () => {
+    expect(parseInput('', '%')).toEqual('');
+  });
+  it('enters percent after a decimal dot', () => {
+    expect(parseInput('9.', '%')).toEqual('9.%');
+  });
+  it('enters percent after a closing bracket', () => {
+    expect(parseInput('((9)', '%')).toEqual('((9)%');
+  });
+  it('enters percent after a number', () => {
+    expect(parseInput('9', '%')).toEqual('9%');
+  });
+  it('adds multiplication operator & opening bracket (minus/plus sign) after percent', () => {
+    expect(parseInput('9%', '+/-')).toEqual('9%*(-');
+  });
+  it('adds multiplication operator & number after percent', () => {
+    expect(parseInput('9%', '9')).toEqual('9%*9');
+    expect(parseInput('9%', '.')).toEqual('9%*0.');
+  });
+  it('adds multiplication operator & opening bracket (no unclosed brackets) after percent', () => {
+    expect(parseInput('9%', '()')).toEqual('9%*(');
+  });
+  it('adds closing bracket (unclosed brackets) after percent', () => {
+    expect(parseInput('(9%', '()')).toEqual('(9%)');
+  });
+  it('adds any operator after percent', () => {
+    expect(parseInput('9%', '+')).toEqual('9%+');
+    expect(parseInput('9%', '-')).toEqual('9%-');
+    expect(parseInput('9%', '*')).toEqual('9%*');
+    expect(parseInput('9%', '/')).toEqual('9%/');
+  });
   //=== brackets
   it('adds consecutive opening bracket after another opening bracket', () => {
     expect(parseInput('(8)*(', '()')).toEqual('(8)*((');
