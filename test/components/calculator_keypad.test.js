@@ -17,9 +17,9 @@ describe('CalculatorKeypad', () => {
   });
 
   it('renders without crashing', () => {
-    expect(enzymeWrapper.hasClass('calculator-keypad')).toBe(true);
+    expect(enzymeWrapper.hasClass('keypad')).toBe(true);
   });
   it('shows 21 buttons', () => {
-    expect(enzymeWrapper.find('.calculator-keypad-main').find('div').length).toBe(21);
+    expect(enzymeWrapper.find('.keypad-main').find('div').length).toBe(21);
   });
 });

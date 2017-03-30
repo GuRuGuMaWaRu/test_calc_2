@@ -54,6 +54,37 @@ describe('maxCharacterNumber', () => {
 });
 
 describe('parseInput', () => {
+  //=== brackets
+  it('inserts a leading opening bracket', () => {
+    expect(parseInput('', '()')).toEqual('(');
+  });
+  it('inserts "(" after an opening bracket', () => {
+    expect(parseInput('(', '()')).toEqual('((');
+  });
+  it('inserts ")" after a number if there are unclosed open brackets', () => {
+    expect(parseInput('(67', '()')).toEqual('(67)');
+    expect(parseInput('((67', '()')).toEqual('((67)');
+    expect(parseInput('(55*(66', '()')).toEqual('(55*(66)');
+    expect(parseInput('(55.', '()')).toEqual('(55.)');
+  });
+  it('inserts "*(" after a number/closing bracket if there are no unclosed open brackets', () => {
+    expect(parseInput('67', '()')).toEqual('67*(');
+    expect(parseInput('67.', '()')).toEqual('67.*(');
+    expect(parseInput('(67)', '()')).toEqual('(67)*(');
+  });
+  it('inserts "(" after an operator', () => {
+    expect(parseInput('2*', '()')).toEqual('2*(');
+    expect(parseInput('2/', '()')).toEqual('2/(');
+    expect(parseInput('2-', '()')).toEqual('2-(');
+    expect(parseInput('2+', '()')).toEqual('2+(');
+  });
+  it('deals correctly with border cases (2)', () => {
+    expect(parseInput('(2)*(2-3', '()')).toEqual('(2)*(2-3)');
+  });
+  it('adds consecutive closing bracket', () => {
+    expect(parseInput('(((8)', '()')).toEqual('(((8))');
+  });
+  //===
   it('removes redundant leading zeroes', () => {
     expect(parseInput('0', '0')).toEqual('0');
     expect(parseInput('0', '6')).toEqual('6');
@@ -82,24 +113,6 @@ describe('parseInput', () => {
     expect(parseInput('4+', '*')).toEqual('4*');
     expect(parseInput('4+', '/')).toEqual('4/');
   });
-  it('inserts a leading opening bracket', () => {
-    expect(parseInput('', '()')).toEqual('(');
-  });
-  it('inserts "(" after an opening bracket', () => {
-    expect(parseInput('(', '()')).toEqual('((');
-    expect(parseInput('((((', '()')).toEqual('(((((');
-  });
-  it('inserts ")" after a number if there are unclosed open brackets', () => {
-    expect(parseInput('(67', '()')).toEqual('(67)');
-    expect(parseInput('((67', '()')).toEqual('((67)');
-    expect(parseInput('(55*(66', '()')).toEqual('(55*(66)');
-    expect(parseInput('(55.', '()')).toEqual('(55.)');
-  });
-  it('inserts "*(" after a number/closing bracket if there are no unclosed open brackets', () => {
-    expect(parseInput('67', '()')).toEqual('67*(');
-    expect(parseInput('67.', '()')).toEqual('67.*(');
-    expect(parseInput('(67)', '()')).toEqual('(67)*(');
-  });
   it('inserts "(-" when "+/-" button is pressed when input is empty', () => {
     expect(parseInput('', '+/-')).toEqual('(-');
   });
@@ -114,19 +127,10 @@ describe('parseInput', () => {
     expect(parseInput('(-100', '+/-')).toEqual('100');
     expect(parseInput('55+(-55', '+/-')).toEqual('55+55');
   });
-  it('inserts "(" after an operator', () => {
-    expect(parseInput('2*', '()')).toEqual('2*(');
-    expect(parseInput('2/', '()')).toEqual('2/(');
-    expect(parseInput('2-', '()')).toEqual('2-(');
-    expect(parseInput('2+', '()')).toEqual('2+(');
-  });
   it('does not allow operators (except for "-") after "("', () => {
     expect(parseInput('(', '+')).toEqual('(');
     expect(parseInput('(', '*')).toEqual('(');
     expect(parseInput('(', '/')).toEqual('(');
     expect(parseInput('(', '-')).toEqual('(-');
-  });
-  it('deals correctly with border cases (2)', () => {
-    expect(parseInput('(2)*(2-3', '()')).toEqual('(2)*(2-3)');
   });
 });

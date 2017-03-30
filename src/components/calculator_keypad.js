@@ -15,6 +15,12 @@ export class CalculatorKeypad extends Component {
     if (keyName) {
       if (keyName !== 'delete') {
         const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
+
+        pressedElement.classList.add('keypad-key-active');
+        setTimeout(function () {
+            pressedElement.classList.remove('keypad-key-active');
+        }, 150);
+
         rippleEffect(event, true, pressedElement);
       }
       this.props.handleInput(event, true, this.props.parsedInput, keyName);

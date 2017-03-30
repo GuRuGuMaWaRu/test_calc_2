@@ -25,12 +25,12 @@ describe('CalculatorDisplay', () => {
   });
 
   it('renders without crashing', () => {
-    expect(enzymeWrapper.hasClass('calculator-display')).toBe(true);
+    expect(enzymeWrapper.hasClass('display')).toBe(true);
   });
   it('shows input field', () => {
-    expect(enzymeWrapper.find('.calculator-display-input')).toBeTruthy();
+    expect(enzymeWrapper.find('.display-input')).toBeTruthy();
   });
   it('shows result field', () => {
-    expect(enzymeWrapper.find('.calculator-display-result')).toBeTruthy();
+    expect(enzymeWrapper.find('.display-result')).toBeTruthy();
   });
 });

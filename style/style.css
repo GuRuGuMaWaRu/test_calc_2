@@ -121,6 +121,10 @@ body {
   background-color: hsla(220, 90%, 84%, 1);
 }
 
+.keypad-key-active {
+  background-color: hsla(220, 90%, 84%, 1);
+}
+
 .outer-row {
   background-color: hsla(220, 70%, 93%, 1);
   color: hsla(220, 90%, 70%, 1);
