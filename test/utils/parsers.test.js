@@ -57,12 +57,11 @@ describe('parseInput', () => {
   //=== brackets
   it('adds consecutive opening bracket after another opening bracket', () => {
     expect(parseInput('(8)*(', '()')).toEqual('(8)*((');
-    expect(parseInput('(8)+(', '()')).toEqual('(8)+((');
-    expect(parseInput('(8)-(', '()')).toEqual('(8)-((');
-    expect(parseInput('(8)/(', '()')).toEqual('(8)/((');
   });
   it('adds consecutive closing bracket', () => {
     expect(parseInput('(((8)', '()')).toEqual('(((8))');
+    expect(parseInput('(((8))', '()')).toEqual('(((8)))');
+    expect(parseInput('(((8)))', '()')).toEqual('(((8)))*(');
   });
   it('inserts a leading opening bracket', () => {
     expect(parseInput('', '()')).toEqual('(');

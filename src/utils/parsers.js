@@ -103,7 +103,7 @@ export const parseInput = (previousInput, currentInput) => {
     if (openingBracketsNr > closingBracketsNr) {
       handlers.push({
         value: /\(\)/,
-        test: /(\d|\.)\(\)/,
+        test: /([\d\.\)])\(\)/,
         convert: '$1)'
       });
     } else {
