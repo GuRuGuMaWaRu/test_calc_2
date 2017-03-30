@@ -32,6 +32,7 @@ export const inputCheck = (previousInput, currentInput) => {
 
 export const parseInput = (previousInput, currentInput) => {
   const handlers = [
+    //== '+/-' input
     {
       value: /\+\/\-/,
       test: /\(\-(\d+)?\+\/\-$/, //=== remove a negative sign
@@ -39,9 +40,15 @@ export const parseInput = (previousInput, currentInput) => {
     },
     {
       value: /\+\/\-/,
+      test: /([\)\%])\+\/\-/, //=== add "*(-" after "%" and closing bracket
+      convert: '$1*(-'
+    },
+    {
+      value: /\+\/\-/,
       test: /(\d+)?\+\/\-$/, //=== add a negative sign
       convert: '(-$1'
     },
+    //==
     {
       value: /\d/,
       test: /(^|[\/\+\-\*\(])0(\d)/, //=== solve leading zero issue
@@ -91,6 +98,17 @@ export const parseInput = (previousInput, currentInput) => {
       value: /[\d]/,
       test: /(\))(\d)/, //=== add multiplication operator before a number that follows closing bracket
       convert: '$1*$2'
+    },
+    //== percent handlers
+    {
+      value: /%/,
+      test: /([\/\+\-\*\(\%])%/, //=== cases when percent sign is not entered
+      convert: '$1'
+    },
+    {
+      value: /%/,
+      test: /^%/, //=== forbid percent character as the first character
+      convert: ''
     }
   ];
 

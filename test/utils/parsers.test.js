@@ -131,6 +131,10 @@ describe('parseInput', () => {
   it('deals correctly with border cases (2)', () => {
     expect(parseInput('(2)*(2-3', '()')).toEqual('(2)*(2-3)');
   });
+  //=== "+/-"
+  it('adds "*(-" when "+/-" is entered', () => {
+    expect(parseInput('(9)', '+/-')).toEqual('(9)*(-');
+  });
   //===
   it('removes redundant leading zeroes', () => {
     expect(parseInput('0', '0')).toEqual('0');
