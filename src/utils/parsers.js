@@ -109,7 +109,17 @@ export const parseInput = (previousInput, currentInput) => {
       value: /%/,
       test: /^%/, //=== forbid percent character as the first character
       convert: ''
-    }
+    },
+    {
+      value: /\d/,
+      test: /%(\d)/, //=== forbid percent character as the first character
+      convert: '%*$1'
+    },
+    {
+      value: /\./,
+      test: /%\./, //=== solve duplicate decimal dot issue
+      convert: '%*0.'
+    },
   ];
 
   // add handlers depending on the number of opening/closing brackets
@@ -121,13 +131,13 @@ export const parseInput = (previousInput, currentInput) => {
     if (openingBracketsNr > closingBracketsNr) {
       handlers.push({
         value: /\(\)/,
-        test: /([\d\.\)])\(\)/,
+        test: /([\d\.\)%])\(\)/,
         convert: '$1)'
       });
     } else {
       handlers.push({
         value: /\(\)/,
-        test: /(\d|\.|\))\(\)/,
+        test: /([\d\.\)%])\(\)/,
         convert: '$1*('
       });
     }
