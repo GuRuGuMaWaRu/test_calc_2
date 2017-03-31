@@ -40,7 +40,7 @@ export const parseInput = (previousInput, currentInput) => {
     },
     {
       value: /\+\/\-/,
-      test: /([\)\%])\+\/\-/, //=== add "*(-" after "%" and closing bracket
+      test: /([\)%])\+\/\-/, //=== add "*(-" after "%" and closing bracket
       convert: '$1*(-'
     },
     {
@@ -102,7 +102,7 @@ export const parseInput = (previousInput, currentInput) => {
     //== percent handlers
     {
       value: /%/,
-      test: /([\/\+\-\*\(\%])%/, //=== cases when percent sign is not entered
+      test: /([\/\+\-\*\(%])%/, //=== cases when percent sign is not entered
       convert: '$1'
     },
     {

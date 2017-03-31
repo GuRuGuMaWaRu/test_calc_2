@@ -2,8 +2,7 @@ import {
   inputCheck,
   parseInput,
   beautifyInput,
-  beautifyResult,
-  parseKeyboardInput
+  beautifyResult
 } from '../utils/parsers';
 import { calculationParser } from '../utils/calculation';
 import {
