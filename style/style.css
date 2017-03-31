@@ -25,6 +25,7 @@ body {
 .display-input {
   display: block;
   overflow: auto;
+  overflow-wrap: break-word;
   margin-bottom: 20px;
   font-size: 2em;
   transition: font-size 0.5s;

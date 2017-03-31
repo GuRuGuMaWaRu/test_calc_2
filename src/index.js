@@ -27,4 +27,6 @@ ReactDOM.render(
   (addition & subtraction dont have any priority and should be handled from left to right)
 ***10 - ripple animation
 ***11 - SOLVE - when "(6)" pressing "()" brings an error
+12 - SOLVE - if the result is an "E" number, it gets displayed in input field & currently
+there is no logic to deal with such numbers - I have to parse it somehow
 */
