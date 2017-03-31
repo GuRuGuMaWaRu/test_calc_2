@@ -5,16 +5,16 @@ import {
   maxDecimalDotLength,
   maxCharacterNumber,
   parseInput,
-  parseKeyboardInput } from '../../src/utils/parsers';
+  getKeyName } from '../../src/utils/parsers';
 
-describe('parseKeyboardInput', () => {
+describe('getKeyName', () => {
   it('returns a string for a pressed key', () => {
-    expect(parseKeyboardInput({keyCode: 48, shiftKey: false})).toEqual('0');
-    expect(parseKeyboardInput({keyCode: 49, shiftKey: false})).toEqual('1');
+    expect(getKeyName({keyCode: 48, shiftKey: false})).toEqual('0');
+    expect(getKeyName({keyCode: 49, shiftKey: false})).toEqual('1');
   });
   it('returns a string for a pressed key if SHIFT is held', () => {
-    expect(parseKeyboardInput({keyCode: 48, shiftKey: true})).toEqual('()');
-    expect(parseKeyboardInput({keyCode: 56, shiftKey: true})).toEqual('*');
+    expect(getKeyName({keyCode: 48, shiftKey: true})).toEqual('()');
+    expect(getKeyName({keyCode: 56, shiftKey: true})).toEqual('*');
   });
 });
 

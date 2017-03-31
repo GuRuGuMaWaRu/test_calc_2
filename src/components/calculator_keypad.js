@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { rippleEffect } from '../utils/visual';
-import { parseKeyboardInput } from '../utils/parsers';
+import { getKeyName } from '../utils/parsers';
 
 export class CalculatorKeypad extends Component {
   componentWillUpdate() {
@@ -10,16 +10,11 @@ export class CalculatorKeypad extends Component {
   }
 
   handleKeyboard = (event) => {
-    const keyName = parseKeyboardInput(event);
-
+    const keyName = getKeyName(event);
+    console.log(event);
     if (keyName) {
       if (keyName !== 'delete') {
         const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
-
-        // pressedElement.classList.add('keypad-key-active');
-        // setTimeout(function () {
-        //     pressedElement.classList.remove('keypad-key-active');
-        // }, 150);
 
         rippleEffect(event, true, pressedElement);
       }

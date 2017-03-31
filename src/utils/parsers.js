@@ -167,7 +167,7 @@ export const beautifyResult = (input) => {
   }
 }
 
-export const parseKeyboardInput = (event) => {
+export const getKeyName = (event) => {
   const simpleValues = {
     8: 'delete', 13: '=',
     48: '0', 49: '1', 50: '2', 51: '3', 52: '4',
