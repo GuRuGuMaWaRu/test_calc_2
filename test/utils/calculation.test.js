@@ -29,6 +29,16 @@ describe('checkForExponential', () => {
 });
 
 describe('calculationParser', () => {
+  it('handles percent character correctly (no other numbers before a percent)', () => {
+    expect(calculationParser('6%')).toEqual('0.06');
+    expect(calculationParser('6%+6')).toEqual('6.06');
+    expect(calculationParser('(6)%')).toEqual('0.06');
+  });
+  it('handles percent character correctly (there are other numbers before a percent)', () => {
+    expect(calculationParser('10+10%')).toEqual('11');
+    expect(calculationParser('100+100+10%')).toEqual('220');
+    expect(calculationParser('10+10+10+10++10+10+10+10+10+10+10%')).toEqual('110');
+  });
   it('performs simple and complex calculations', () => {
     expect(calculationParser('6/5/3/76/656')).toEqual('0.000008023106546854943');
   });
