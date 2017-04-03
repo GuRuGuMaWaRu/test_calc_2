@@ -43,12 +43,12 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
     };
   }
   // handle any limits
-  const limitMessage = inputCheck(parsedInput, currentInput);
-  if (limitMessage.length > 0) {
+  const warningMessage = inputCheck(parsedInput, currentInput);
+  if (warningMessage.length > 0) {
     return {
       type: SHOW_MESSAGE,
       payload: {
-        content: limitMessage,
+        content: warningMessage,
         show: true
       }
     };

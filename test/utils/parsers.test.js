@@ -5,8 +5,14 @@ import {
   maxDecimalDotLength,
   maxCharacterNumber,
   parseInput,
+  inputCheck,
   getKeyName } from '../../src/utils/parsers';
 
+describe('inputCheck', () => {
+  it('returns "cant divide by zero" message', () => {
+    expect(inputCheck('5/', '0')).toEqual('Can\'t divide by zero');
+  });
+});
 describe('getKeyName', () => {
   it('returns a string for a pressed key', () => {
     expect(getKeyName({keyCode: 48, shiftKey: false})).toEqual('0');

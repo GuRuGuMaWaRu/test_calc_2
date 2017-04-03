@@ -26,6 +26,8 @@ export const inputCheck = (previousInput, currentInput) => {
     return 'Maximum number of operators: 20';
   } else if (/\d/.test(currentInput) && maxDecimalDotLength(previousInput)) {
     return 'Maximum number of digits after decimal dot: 10';
+  } else if (/\/$/.test(previousInput) && currentInput === '0') {
+    return 'Can\'t divide by zero';
   }
   return '';
 }
