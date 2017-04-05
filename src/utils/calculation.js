@@ -56,7 +56,7 @@ export const calculateOuter = (input) => {
         ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // multiplication first
         : input.indexOf('/') !== -1
           ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\/)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // division second
-          : calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
+          : calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
 
     }
   } catch (e) {
