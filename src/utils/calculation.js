@@ -40,14 +40,23 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
 
 export const calculateOuter = (input) => {
   try {
-    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?$/.test(input)) { // return if only one number is left
+    //=== return if only one number is left
+    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?$/.test(input)) {
       return input;
     } else {
-      return input.indexOf('*') !== -1
-        ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // multiplication first
-        : input.indexOf('/') !== -1
-          ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\/)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // division second
-          : calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
+      //=== handle operators priority
+      if (input.indexOf('*') !== -1 || input.indexOf('/') !== -1) {
+        //=== first handle multiplication & division
+        return input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\/\*])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)
+      } else {
+        //=== then handle addition & subtraction
+        return input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)
+      }
+      // return input.indexOf('*') !== -1
+      //   ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // multiplication first
+      //   : input.indexOf('/') !== -1
+      //     ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\/)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // division second
+      //     : calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
 
     }
   } catch (e) {
