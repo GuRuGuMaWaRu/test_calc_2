@@ -46,6 +46,9 @@ describe('calculationParser', () => {
     expect(calculationParser('6/2*2')).toEqual('6');
     expect(calculationParser('6*2/2')).toEqual('6');
   });
+  it('follows the order of operations, "*" & "/" is calculated before "+")', () => {
+    expect(calculationParser('2+22*5')).toEqual('112');
+  });
   it('performs simple and complex calculations', () => {
     expect(calculationParser('6/5/3/76/656')).toEqual('0.000008023106546854943');
   });
@@ -60,11 +63,9 @@ describe('calculationParser', () => {
   });
   it('performs calculation (without brackets)', () => {
     expect(calculationParser('6+4')).toEqual('10');
-    expect(calculationParser('6+4+10')).toEqual('20');
     expect(calculationParser('6*6')).toEqual('36');
     expect(calculationParser('81/9')).toEqual('9');
     expect(calculationParser('6.7+3.4')).toEqual('10.1');
-    expect(calculationParser('6.41+1.543')).toEqual('7.953');
   });
   it('performs calculation (with brackets)', () => {
     expect(calculationParser('(5+5)')).toEqual('10');
@@ -77,7 +78,6 @@ describe('calculationParser', () => {
     expect(calculationParser('(2-3)+')).toEqual('-1');
     expect(calculationParser('(2-3)-1')).toEqual('-2');
     expect(calculationParser('(2-3)+1')).toEqual('0');
-    expect(calculationParser('(2)*(2-3)')).toEqual('-2');
     expect(calculationParser('(23)*(2-87)')).toEqual('-1955');
   });
   it('deals separately with unclosed bracketed expressions', () => {
@@ -90,12 +90,9 @@ describe('calculationParser', () => {
     expect(calculationParser('(-1+2')).toEqual('1');
     expect(calculationParser('5+(-2')).toEqual('3');
   });
-  it('deals with border cases', () => {
+  it('deals with unfinished equations', () => {
     expect(calculationParser('2+')).toEqual('2');
     expect(calculationParser('2+(')).toEqual('2');
-  });
-  it('follows order of operations ('*' is calculated before '+' etc)', () => {
-    expect(calculationParser('2+22*5')).toEqual('112');
   });
   it('handles ultra small results', () => {
     expect(calculationParser('6/5/3/76/656/4/5')).toEqual('4.01155327e-7');
