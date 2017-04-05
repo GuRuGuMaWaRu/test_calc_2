@@ -45,18 +45,18 @@ export const calculateOuter = (input) => {
       return input;
     } else {
       //=== handle operators priority
-      if (input.indexOf('*') !== -1 || input.indexOf('/') !== -1) {
-        //=== first handle multiplication & division
-        return input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\/\*])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)
-      } else {
-        //=== then handle addition & subtraction
-        return input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)
-      }
-      // return input.indexOf('*') !== -1
-      //   ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // multiplication first
-      //   : input.indexOf('/') !== -1
-      //     ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\/)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // division second
-      //     : calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
+      // if (input.indexOf('*') !== -1 || input.indexOf('/') !== -1) {
+      //   //=== first handle multiplication & division
+      //   return input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\/\*])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)
+      // } else {
+      //   //=== then handle addition & subtraction
+      //   return input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)
+      // }
+      return input.indexOf('*') !== -1
+        ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\*)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // multiplication first
+        : input.indexOf('/') !== -1
+          ? calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)(\/)(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)) // division second
+          : calculateOuter(input.replace(/^(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple)); // all operations but multiplication
 
     }
   } catch (e) {

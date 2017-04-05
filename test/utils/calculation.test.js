@@ -32,15 +32,19 @@ describe('calculationParser', () => {
   // it('handles correctly E-numbers if they come through input', () => {
   //   expect(calculationParser('9.99900000e+18+10000000000')).toEqual('9.99900001e+18');
   // });
-  it('handles percent character correctly (no other numbers before a percent)', () => {
-    expect(calculationParser('6%')).toEqual('0.06');
-    expect(calculationParser('6%+6')).toEqual('6.06');
-    expect(calculationParser('(6)%')).toEqual('0.06');
-  });
-  it('handles percent character correctly (there are other numbers before a percent)', () => {
-    expect(calculationParser('10+10%')).toEqual('11');
-    expect(calculationParser('100+100+10%')).toEqual('220');
-    expect(calculationParser('10+10+10+10++10+10+10+10+10+10+10%')).toEqual('110');
+  // it('handles percent character correctly (no other numbers before a percent)', () => {
+  //   expect(calculationParser('6%')).toEqual('0.06');
+  //   expect(calculationParser('6%+6')).toEqual('6.06');
+  //   expect(calculationParser('(6)%')).toEqual('0.06');
+  // });
+  // it('handles percent character correctly (there are other numbers before a percent)', () => {
+  //   expect(calculationParser('10+10%')).toEqual('11');
+  //   expect(calculationParser('100+100+10%')).toEqual('220');
+  //   expect(calculationParser('10+10+10+10++10+10+10+10+10+10+10%')).toEqual('110');
+  // });
+  it('guarantees equal priority for multiplication & division', () => {
+    expect(calculationParser('6/2*2')).toEqual('6');
+    expect(calculationParser('6*2/2')).toEqual('6');
   });
   it('performs simple and complex calculations', () => {
     expect(calculationParser('6/5/3/76/656')).toEqual('0.000008023106546854943');
