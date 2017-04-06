@@ -44,6 +44,10 @@ describe('calculationParser', () => {
     expect(calculationParser('10+10%')).toEqual('11');
     expect(calculationParser('10+10+10+10+10+10+10+10+10+10+10%')).toEqual('110');
   });
+  it('handles subtraction of a simple number to percent number', () => {
+    expect(calculationParser('10-10%')).toEqual('9');
+    expect(calculationParser('10+10+10+10+10+10+10+10+10+10-10%')).toEqual('90');
+  });
   it('guarantees equal priority for multiplication & division', () => {
     expect(calculationParser('6/2*2')).toEqual('6');
     expect(calculationParser('6*2/2')).toEqual('6');
