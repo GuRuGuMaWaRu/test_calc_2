@@ -34,4 +34,5 @@ ReactDOM.render(
 14 - SOLVE - multiplication & division have equal priority and should be handled
       from left to right of the equation (e.g. 5/2*6 => first 5/2 and then 2*6)
 15 - ADD animated clear sequence like in Android calculator
+16 - SOLVE - handle both percent numbers!!!
 */

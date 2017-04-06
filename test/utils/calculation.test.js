@@ -48,9 +48,14 @@ describe('calculationParser', () => {
     expect(calculationParser('10-10%')).toEqual('9');
     expect(calculationParser('10+10+10+10+10+10+10+10+10+10-10%')).toEqual('90');
   });
-  it('handles deletion of a simple number to percent number', () => {
+  it('handles division of a simple number by a percent number', () => {
     expect(calculationParser('10/10%')).toEqual('100');
     expect(calculationParser('100+100/10%')).toEqual('1100');
+  });
+  it('handles multiplication of a simple number by a percent number', () => {
+    expect(calculationParser('10*10%')).toEqual('1');
+    expect(calculationParser('55*10%')).toEqual('5.5');
+    expect(calculationParser('100+55*10%')).toEqual('105.5');
   });
   it('guarantees equal priority for multiplication & division', () => {
     expect(calculationParser('6/2*2')).toEqual('6');

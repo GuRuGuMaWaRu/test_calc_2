@@ -23,7 +23,7 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
     firstNumber = Number(firstNumber);
     if (operator === '-' || operator === '+') {
       secondNumber = firstNumber * secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
-    } else if (operator === '/') {
+    } else {
       secondNumber = secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
     }
   } else {
