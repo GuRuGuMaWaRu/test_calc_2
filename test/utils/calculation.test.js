@@ -40,10 +40,9 @@ describe('calculationParser', () => {
     expect(calculationParser('6%+6')).toEqual('6.06');
     expect(calculationParser('6%+(6')).toEqual('6.06');
   });
-  it.skip('handles percent character correctly (there are other numbers before a percent)', () => {
+  it('handles addition of a simple number to percent number', () => {
     expect(calculationParser('10+10%')).toEqual('11');
-    expect(calculationParser('100+100+10%')).toEqual('220');
-    expect(calculationParser('10+10+10+10++10+10+10+10+10+10+10%')).toEqual('110');
+    expect(calculationParser('10+10+10+10+10+10+10+10+10+10+10%')).toEqual('110');
   });
   it('guarantees equal priority for multiplication & division', () => {
     expect(calculationParser('6/2*2')).toEqual('6');
