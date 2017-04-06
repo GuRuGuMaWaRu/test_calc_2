@@ -57,6 +57,12 @@ describe('calculationParser', () => {
     expect(calculationParser('55*10%')).toEqual('5.5');
     expect(calculationParser('100+55*10%')).toEqual('105.5');
   });
+  it('handles both percent numbers', () => {
+    expect(calculationParser('10%+10%')).toEqual('0.11');
+    expect(calculationParser('10%-10%')).toEqual('0.09000000000000001');
+    expect(calculationParser('10%/10%')).toEqual('1');
+    expect(calculationParser('10%*10%')).toEqual('0.010000000000000002');
+  });
   it('guarantees equal priority for multiplication & division', () => {
     expect(calculationParser('6/2*2')).toEqual('6');
     expect(calculationParser('6*2/2')).toEqual('6');

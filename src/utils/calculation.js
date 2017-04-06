@@ -16,18 +16,22 @@ export const checkForExponential = (input) => { // turn a large number into expo
 export const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
   const floatingPoint = firstNumber.indexOf('.') !== -1 || secondNumber.indexOf('.') !== -1;
 
+  //=== handle percents & convert strings to numbers
   if (firstNumber.indexOf('%') !== -1) {
     firstNumber = Number(firstNumber.slice(0, firstNumber.indexOf('%'))) * 0.01;
-    secondNumber = Number(secondNumber);
-  } else if (secondNumber.indexOf('%') !== -1) {
+    // secondNumber = Number(secondNumber);
+  } else {
     firstNumber = Number(firstNumber);
+  }
+
+  if (secondNumber.indexOf('%') !== -1) {
+    // firstNumber = Number(firstNumber);
     if (operator === '-' || operator === '+') {
       secondNumber = firstNumber * secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
     } else {
       secondNumber = secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
     }
   } else {
-    firstNumber = Number(firstNumber);
     secondNumber = Number(secondNumber);
   }
 
