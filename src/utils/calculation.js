@@ -15,24 +15,26 @@ export const checkForExponential = (input) => { // turn a large number into expo
 
 export const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
   const floatingPoint = firstNumber.indexOf('.') !== -1 || secondNumber.indexOf('.') !== -1;
+  let firstNumberPercent = false;
 
-  if (floatingPoint) { // convert string numbers into true numbers
-    firstNumber = Number.parseFloat(firstNumber, 10);
-    secondNumber = Number.parseFloat(secondNumber, 10);
-  } else {
-    firstNumber = Number.parseInt(firstNumber, 10);
-    secondNumber = Number.parseInt(secondNumber, 10);
+  if (firstNumber.indexOf('%') !== -1) {
+    console.log('percent');
+    firstNumberPercent = true;
+  }
+
+  if (firstNumberPercent) {
+    firstNumber *= 0.01;
   }
 
   switch(operator) { // perform a calculation depending on passed operator
     case '+':
-      return checkForExponential(firstNumber + secondNumber);
+      return checkForExponential(Number(firstNumber) + Number(secondNumber));
     case '-':
-      return checkForExponential(firstNumber - secondNumber);
+      return checkForExponential(Number(firstNumber) - Number(secondNumber));
     case '*':
-      return checkForExponential(firstNumber * secondNumber);
+      return checkForExponential(Number(firstNumber) * Number(secondNumber));
     case '/':
-      return checkForExponential(firstNumber / secondNumber);
+      return checkForExponential(Number(firstNumber) / Number(secondNumber));
     default:
       return '';
   }
@@ -41,20 +43,26 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
 export const calculateOuter = (input) => {
   try {
     //=== return if only one number is left
-    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?$/.test(input)) {
+    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?(%)?$/.test(input)) {
+      //=== handle single number with percent sign
+      if (input.indexOf('%') !== -1) {
+        const number = input.slice(0, input.indexOf('%'));
+        return Number(number) * 0.01;
+      }
+      //=== handle single number
       return input;
     } else {
         //=== handle operators priority
       if (input.indexOf('*') !== -1 || input.indexOf('/') !== -1) {
         //=== first handle multiplication & division
-        return calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\/\*])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple));
+        return calculateOuter(input.replace(/(\-?[\d\.%]+(?:e\+\d+)?)([\/\*])(\-?[\d\.%]+(?:e\+\d+)?)/, calculateSimple));
       } else {
         //=== then handle addition & subtraction
-        return calculateOuter(input.replace(/(\-?[\d\.]+(?:e\+\d+)?)([\+\-])(\-?[\d\.]+(?:e\+\d+)?)/, calculateSimple));
+        return calculateOuter(input.replace(/(\-?[\d\.%]+(?:e\+\d+)?)([\+\-])(\-?[\d\.%]+(?:e\+\d+)?)/, calculateSimple));
       }
     }
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
