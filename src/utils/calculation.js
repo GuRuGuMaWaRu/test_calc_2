@@ -15,16 +15,15 @@ export const checkForExponential = (input) => { // turn a large number into expo
 
 export const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
   const floatingPoint = firstNumber.indexOf('.') !== -1 || secondNumber.indexOf('.') !== -1;
-  let firstNumberPercent = false;
-
-  if (firstNumber.indexOf('%') !== -1) {
-    console.log('percent');
-    firstNumberPercent = true;
-  }
-
-  if (firstNumberPercent) {
-    firstNumber *= 0.01;
-  }
+  // let firstNumberPercent = false;
+  //
+  // if (firstNumber.indexOf('%') !== -1) {
+  //   firstNumberPercent = true;
+  // }
+  //
+  // if (firstNumberPercent) {
+  //   firstNumber *= 0.01;
+  // }
 
   switch(operator) { // perform a calculation depending on passed operator
     case '+':
@@ -47,7 +46,7 @@ export const calculateOuter = (input) => {
       //=== handle single number with percent sign
       if (input.indexOf('%') !== -1) {
         const number = input.slice(0, input.indexOf('%'));
-        return Number(number) * 0.01;
+        return (Number(number) * 0.01).toString();
       }
       //=== handle single number
       return input;
