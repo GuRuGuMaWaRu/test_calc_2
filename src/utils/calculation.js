@@ -21,7 +21,11 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
     secondNumber = Number(secondNumber);
   } else if (secondNumber.indexOf('%') !== -1) {
     firstNumber = Number(firstNumber);
-    secondNumber = firstNumber * secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
+    if (operator === '-' || operator === '+') {
+      secondNumber = firstNumber * secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
+    } else if (operator === '/') {
+      secondNumber = secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
+    }
   } else {
     firstNumber = Number(firstNumber);
     secondNumber = Number(secondNumber);
