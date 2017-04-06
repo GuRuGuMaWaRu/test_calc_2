@@ -15,25 +15,24 @@ export const checkForExponential = (input) => { // turn a large number into expo
 
 export const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
   const floatingPoint = firstNumber.indexOf('.') !== -1 || secondNumber.indexOf('.') !== -1;
-  // let firstNumberPercent = false;
-  //
-  // if (firstNumber.indexOf('%') !== -1) {
-  //   firstNumberPercent = true;
-  // }
-  //
-  // if (firstNumberPercent) {
-  //   firstNumber *= 0.01;
-  // }
+
+  if (firstNumber.indexOf('%') !== -1) {
+    firstNumber = Number(firstNumber.slice(0, firstNumber.indexOf('%'))) * 0.01;
+    secondNumber = Number(secondNumber);
+  } else {
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
+  }
 
   switch(operator) { // perform a calculation depending on passed operator
     case '+':
-      return checkForExponential(Number(firstNumber) + Number(secondNumber));
+      return checkForExponential(firstNumber + secondNumber);
     case '-':
-      return checkForExponential(Number(firstNumber) - Number(secondNumber));
+      return checkForExponential(firstNumber - secondNumber);
     case '*':
-      return checkForExponential(Number(firstNumber) * Number(secondNumber));
+      return checkForExponential(firstNumber * secondNumber);
     case '/':
-      return checkForExponential(Number(firstNumber) / Number(secondNumber));
+      return checkForExponential(firstNumber / secondNumber);
     default:
       return '';
   }
@@ -42,7 +41,7 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
 export const calculateOuter = (input) => {
   try {
     //=== return if only one number is left
-    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?(%)?$/.test(input)) {
+    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?%?$/.test(input)) {
       //=== handle single number with percent sign
       if (input.indexOf('%') !== -1) {
         const number = input.slice(0, input.indexOf('%'));

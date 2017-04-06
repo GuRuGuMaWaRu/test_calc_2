@@ -32,9 +32,13 @@ describe('calculationParser', () => {
   it.skip('handles correctly E-numbers if they come through input', () => {
     expect(calculationParser('9.99900000e+18+10000000000')).toEqual('9.99900001e+18');
   });
-  it('handles correctly one number with percent symbol', () => {
+  it('handles one number with percent symbol', () => {
     expect(calculationParser('6%')).toEqual('0.06');
     expect(calculationParser('(6)%')).toEqual('0.06');
+  });
+  it('handles two numbers, when the first number has percent symbol', () => {
+    expect(calculationParser('6%+6')).toEqual('6.06');
+    expect(calculationParser('6%+(6')).toEqual('6.06');
   });
   it.skip('handles percent character correctly (there are other numbers before a percent)', () => {
     expect(calculationParser('10+10%')).toEqual('11');
