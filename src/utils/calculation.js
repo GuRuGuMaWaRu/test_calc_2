@@ -50,7 +50,7 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
 export const calculateOuter = (input) => {
   try {
     //=== return if only one number is left
-    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+)?(e\-\d+)?%?$/.test(input)) {
+    if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+|e\+|e)?(e\-\d+|e\-|e)?%?$/.test(input)) {
       //=== handle single number with percent sign
       if (input.indexOf('%') !== -1) {
         const number = input.slice(0, input.indexOf('%'));
