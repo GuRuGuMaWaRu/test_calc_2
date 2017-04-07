@@ -29,8 +29,20 @@ describe('checkForExponential', () => {
 });
 
 describe('calculationParser', () => {
-  it.skip('handles correctly E-numbers if they come through input', () => {
-    expect(calculationParser('9.99900000e+18+10000000000')).toEqual('9.99900001e+18');
+  it('handles E-numbers simple calculations', () => {
+    expect(calculationParser('9.00000000e+15+999999999999999')).toEqual('1.00000000e+16');
+    expect(calculationParser('10.00000000e+30-999999999999999')).toEqual('1.00000000e+31');
+    expect(calculationParser('10.00000000e+15*999999999999999')).toEqual('1.00000000e+31');
+    expect(calculationParser('10.00000000e+30/999999999999999')).toEqual('1.00000000e+16');
+  });
+  it('handles E-numbers with second number as a percent', () => {
+    expect(calculationParser('10.00000000e+15+100%')).toEqual('2.00000000e+16');
+    expect(calculationParser('10.00000000e+15-100%')).toEqual('0');
+    expect(calculationParser('10.00000000e+15*50%')).toEqual('5.00000000e+15');
+    expect(calculationParser('10.00000000e+15/50%')).toEqual('2.00000000e+16');
+  });
+  it('handles E-numbers as a percent', () => {
+    expect(calculationParser('2.00000000e+16%')).toEqual('200000000000000');
   });
   it('handles one number with percent symbol', () => {
     expect(calculationParser('6%')).toEqual('0.06');

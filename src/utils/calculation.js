@@ -14,8 +14,6 @@ export const checkForExponential = (input) => { // turn a large number into expo
 }
 
 export const calculateSimple = (_match, firstNumber, operator, secondNumber) => {
-  const floatingPoint = firstNumber.indexOf('.') !== -1 || secondNumber.indexOf('.') !== -1;
-
   //=== handle percents & convert strings to numbers
   if (firstNumber.indexOf('%') !== -1) {
     firstNumber = Number(firstNumber.slice(0, firstNumber.indexOf('%'))) * 0.01;

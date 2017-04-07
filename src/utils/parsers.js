@@ -159,7 +159,9 @@ export const parseInput = (previousInput, currentInput) => {
 export const beautifyInput = (input) => {
   function replaceNumber(_match, number) {
     // solve issue when toLocaleString deletes decimal dot if it's the last symbol
-    if (number.endsWith('.')) {
+    if (input.indexOf('e') !== -1) {
+      return number;
+    } else if (number.endsWith('.')) {
       number = Number(number);
       return (number.toLocaleString('en-US', {maximumFractionDigits: 10})) + '.';
     } else {
