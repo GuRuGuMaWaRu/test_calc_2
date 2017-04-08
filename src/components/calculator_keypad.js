@@ -11,7 +11,7 @@ export class CalculatorKeypad extends Component {
 
   handleKeyboard = (event) => {
     const keyName = getKeyName(event);
-    console.log(event);
+
     if (keyName) {
       if (keyName !== 'delete') {
         const pressedElement = document.querySelector(`[data-key="${keyName}"]`);

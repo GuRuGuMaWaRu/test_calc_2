@@ -43,16 +43,18 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
     };
   }
   // handle any limits
-  const warningMessage = inputCheck(parsedInput, currentInput);
-  if (warningMessage.length > 0) {
+  const checked = inputCheck(parsedInput, currentInput);
+
+  if (checked.message.length > 0) {
     return {
       type: SHOW_MESSAGE,
       payload: {
-        content: warningMessage,
+        content: checked.message,
         show: true
       }
     };
   }
+
   // handle CALCULATION
   const updatedInput = parseInput(parsedInput, currentInput);
   return {

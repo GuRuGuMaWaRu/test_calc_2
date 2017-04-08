@@ -18,18 +18,21 @@ export const maxCharacterNumber = (previousInput) => {
 }
 
 export const inputCheck = (previousInput, currentInput) => {
+  let message = '';
+
   if (maxCharacterNumber(previousInput)) {
-    return 'Maximum number of characters reached: 100';
+    message = 'Maximum number of characters reached: 100';
   } else if (/[\d\.]/.test(currentInput) && maxNumberLength(previousInput)) {
-    return 'Maximum number of characters in a number: 15';
+    message = 'Maximum number of characters in a number: 15';
   } else if (/[\/\+\-\*]/.test(currentInput) && maxOperatorNumber(previousInput)) {
-    return 'Maximum number of operators: 20';
+    message = 'Maximum number of operators: 20';
   } else if (/\d/.test(currentInput) && maxDecimalDotLength(previousInput)) {
-    return 'Maximum number of digits after decimal dot: 10';
+    message = 'Maximum number of digits after decimal dot: 10';
   } else if (/\/$/.test(previousInput) && currentInput === '0') {
-    return 'Can\'t divide by zero';
+    message = 'Can\'t divide by zero';
   }
-  return '';
+   
+  return { message, previousInput, currentInput };
 }
 
 export const parseInput = (previousInput, currentInput) => {
