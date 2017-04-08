@@ -6,7 +6,7 @@ import {
 export default function(state = {content: ''}, action) {
   switch(action.type) {
     case SHOW_MESSAGE:
-      return { ...state, content: action.payload.content };
+      return { ...state, content: action.payload };
     case HIDE_MESSAGE:
       return { ...state, content: '' };
     default:

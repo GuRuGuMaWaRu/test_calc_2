@@ -48,9 +48,7 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
   if (checked.message.length > 0) {
     return {
       type: SHOW_MESSAGE,
-      payload: {
-        content: checked.message
-      }
+      payload: checked.message
     };
   }
 

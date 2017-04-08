@@ -9,8 +9,9 @@ import '../../style/style.css';
 export class App extends Component {
   render() {
     const message = this.props.message;
+
     // hide message, if present
-    if (message.length > 0) {
+    if (message) {
       window.setTimeout(() => {
         this.props.hideMessage();
       }, 1500);
@@ -20,7 +21,7 @@ export class App extends Component {
       <div className="calculator">
         <CalculatorDisplay />
         <CalculatorKeypad />
-        <div className={message.length > 0 ? 'message visible' : 'message'}>
+        <div className={message ? 'message visible' : 'message'}>
           {message}
         </div>
       </div>
