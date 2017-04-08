@@ -3,12 +3,12 @@ import {
   HIDE_MESSAGE
 } from '../actions/types';
 
-export default function(state = {}, action) {
+export default function(state = {content: ''}, action) {
   switch(action.type) {
     case SHOW_MESSAGE:
-      return { ...state, content: action.payload.content, show: action.payload.show };
+      return { ...state, content: action.payload.content };
     case HIDE_MESSAGE:
-      return { ...state, show: action.payload.show };
+      return { ...state, content: '' };
     default:
       return state;
   }

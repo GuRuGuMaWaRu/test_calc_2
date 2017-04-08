@@ -49,8 +49,7 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
     return {
       type: SHOW_MESSAGE,
       payload: {
-        content: checked.message,
-        show: true
+        content: checked.message
       }
     };
   }
@@ -69,7 +68,6 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
 
 export function hideMessage() {
   return {
-    type: HIDE_MESSAGE,
-    payload: {show: false}
+    type: HIDE_MESSAGE
   };
 }

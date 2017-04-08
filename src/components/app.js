@@ -8,8 +8,9 @@ import '../../style/style.css';
 
 export class App extends Component {
   render() {
+    const message = this.props.message;
     // hide message, if present
-    if (this.props.show) {
+    if (message.length > 0) {
       window.setTimeout(() => {
         this.props.hideMessage();
       }, 1500);
@@ -19,8 +20,8 @@ export class App extends Component {
       <div className="calculator">
         <CalculatorDisplay />
         <CalculatorKeypad />
-        <div className={this.props.show ? 'message visible' : 'message'}>
-          {this.props.message}
+        <div className={message.length > 0 ? 'message visible' : 'message'}>
+          {message}
         </div>
       </div>
     );
@@ -29,13 +30,11 @@ export class App extends Component {
 
 App.propTypes = {
   message: PropTypes.string,
-  show: PropTypes.bool
 }
 
 function mapStateToProps(state) {
   return {
     message: state.message.content,
-    show: state.message.show
   };
 }
 
