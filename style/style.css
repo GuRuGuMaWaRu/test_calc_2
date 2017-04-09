@@ -33,6 +33,7 @@ body {
 
 .display-result {
   color: #aaa;
+  height: 35px;
   margin-bottom: .8em;
   font-size: 0.8em;
 }

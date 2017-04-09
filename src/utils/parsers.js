@@ -40,7 +40,7 @@ export const inputCheck = (previousInput, currentInput) => {
     if (Number(eNumber) > 307) {
       return {type: 'serious', content: 'Wrong format'};
     }
-  } else if (/%/.test(currentInput) && /[\/\+\-\*]$/.test(previousInput)) {
+  } else if (/%/.test(currentInput) && /[\/\+\-\*\(%]$/.test(previousInput)) {
     return {type: 'serious', content: 'Wrong format'};
   }
   return '';
