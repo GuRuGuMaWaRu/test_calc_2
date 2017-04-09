@@ -35,4 +35,5 @@ ReactDOM.render(
       from left to right of the equation (e.g. 5/2*6 => first 5/2 and then 2*6)
 15 - ADD animated clear sequence like in Android calculator
 16 - SOLVE - handle both percent numbers!!!
+17 - SOLVE - protection from 'divide by zero' does not allow to type in 0.012 etc
 */

@@ -18,13 +18,13 @@ export class CalculatorKeypad extends Component {
 
         rippleEffect(event, true, pressedElement);
       }
-      this.props.handleInput(event, true, this.props.parsedInput, keyName);
+      this.props.handleInput(this.props.parsedInput, keyName);
     }
   }
 
   handleMouseAndTouch = (event, parsedInput, key) => {
     rippleEffect(event, false, null);
-    this.props.handleInput(event, false, parsedInput, key);
+    this.props.handleInput(parsedInput, key);
   }
 
   render() {
@@ -53,7 +53,7 @@ export class CalculatorKeypad extends Component {
       <div className='keypad'>
         <div className='keypad-additional'>
           <span
-            onClick={(event) => this.props.handleInput(event, false, parsedInput, 'delete')}
+            onClick={() => this.props.handleInput(parsedInput, 'delete')}
             className='glyphicon glyphicon-arrow-left padding keypad-delete'
             value='delete'></span>
         </div>

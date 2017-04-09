@@ -12,7 +12,10 @@ import {
   HIDE_MESSAGE
 } from './types';
 
-export function handleInput(event, keyboardInput, parsedInput = '', currentInput) {
+export function handleInput(parsedInput, currentInput) {
+  // check input
+  const checked = inputCheck(parsedInput, currentInput);
+
   // handle DELETE action
   if (currentInput === 'delete') {
     const updatedInput = parsedInput.slice(0, -1);
@@ -21,7 +24,8 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
       payload: {
         parsed: updatedInput,
         display: beautifyInput(updatedInput),
-        result: beautifyResult(calculationParser(updatedInput))
+        result: checked.result ? beautifyResult(calculationParser(updatedInput)) : '',
+        message: checked.message
       }
     };
   }
@@ -42,15 +46,15 @@ export function handleInput(event, keyboardInput, parsedInput = '', currentInput
       }
     };
   }
-  // handle any limits
-  const checked = inputCheck(parsedInput, currentInput);
-
-  if (checked.message.length > 0) {
-    return {
-      type: SHOW_MESSAGE,
-      payload: checked.message
-    };
-  }
+  // // handle any limits
+  // const checked = inputCheck(parsedInput, currentInput);
+  //
+  // if (checked.message.length > 0) {
+  //   return {
+  //     type: SHOW_MESSAGE,
+  //     payload: checked.message
+  //   };
+  // }
 
   // handle CALCULATION
   const updatedInput = parseInput(parsedInput, currentInput);
