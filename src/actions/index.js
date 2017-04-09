@@ -26,6 +26,7 @@ export function handleInput(parsedInput, currentInput) {
         payload: {
           parsed: updatedInput,
           display: beautifyInput(updatedInput),
+          result: '',
           message: message.content
         }
       };
@@ -56,6 +57,7 @@ export function handleInput(parsedInput, currentInput) {
         payload: {
           parsed: parsedInput,
           display: beautifyInput(parsedInput),
+          result: '',
           message: message.content
         }
       }
@@ -81,6 +83,7 @@ export function handleInput(parsedInput, currentInput) {
       payload: {
         parsed: updatedInput,
         display: beautifyInput(updatedInput),
+        result: '',
         message: message.content
       }
     };
@@ -91,6 +94,7 @@ export function handleInput(parsedInput, currentInput) {
       payload: {
         parsed: parsedInput,
         display: beautifyInput(parsedInput),
+        result: '',
         message: message.content
       }
     };

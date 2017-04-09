@@ -18,6 +18,7 @@ export const maxCharacterNumber = (previousInput) => {
 }
 
 export const inputCheck = (previousInput, currentInput) => {
+  console.log(previousInput);
   if (maxCharacterNumber(previousInput)) {
     return {type: 'serious', content: 'Maximum number of characters reached: 100'};
   } else if (/[\d\.]/.test(currentInput) && maxNumberLength(previousInput)) {
@@ -32,6 +33,9 @@ export const inputCheck = (previousInput, currentInput) => {
     return {type: 'medium', content: 'Can\'t divide by zero'};
   } else if (/delete/.test(currentInput) && /\/(0|0\.)$/.test(previousInput.slice(0, -1))) {
     return {type: 'medium', content: 'Can\'t divide by zero'};
+  } else if (/delete/.test(currentInput) && /e/.test(previousInput) && !/e[\+\-]\d+/.test(previousInput.slice(0, -1))) {
+    console.log('Wrong format');
+    return {type: 'medium', content: 'Wrong format'};
   }
   return '';
 }

@@ -31,9 +31,9 @@ ReactDOM.render(
 12 - SOLVE - if the result is an "E" number, it gets displayed in input field & currently
       there is no logic to deal with such numbers - I have to parse it somehow
 ***13 - SOLVE - cant delete by ZERO
-14 - SOLVE - multiplication & division have equal priority and should be handled
+***14 - SOLVE - multiplication & division have equal priority and should be handled
       from left to right of the equation (e.g. 5/2*6 => first 5/2 and then 2*6)
 15 - ADD animated clear sequence like in Android calculator
-16 - SOLVE - handle both percent numbers!!!
-17 - SOLVE - protection from 'divide by zero' does not allow to type in 0.012 etc
+***16 - SOLVE - handle both percent numbers!!!
+***17 - SOLVE - protection from 'divide by zero' does not allow to type in 0.012 etc
 */

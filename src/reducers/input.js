@@ -9,9 +9,9 @@ export default function(state = {parsed: '', display: '', result: '', message: '
   switch(action.type) {
     case ERROR_MESSAGE:
       return {
-        ...state,
         parsed: action.payload.parsed,
         display: action.payload.display,
+        result: action.payload.result,
         message: action.payload.message
       };
     case UPDATE_INPUT:
