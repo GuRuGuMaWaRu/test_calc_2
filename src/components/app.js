@@ -35,7 +35,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    message: state.message.content,
+    message: state.input.message,
   };
 }
 

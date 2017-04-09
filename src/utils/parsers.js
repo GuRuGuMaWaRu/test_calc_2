@@ -18,33 +18,22 @@ export const maxCharacterNumber = (previousInput) => {
 }
 
 export const inputCheck = (previousInput, currentInput) => {
-  let message = '',
-      display = true,
-      result = true;
-
   if (maxCharacterNumber(previousInput)) {
-    message = 'Maximum number of characters reached: 100';
-    display = false;
-    result = false;
+    return {type: 'serious', content: 'Maximum number of characters reached: 100'};
   } else if (/[\d\.]/.test(currentInput) && maxNumberLength(previousInput)) {
-    message = 'Maximum number of characters in a number: 15';
-    display = false;
-    result = false;
+    return {type: 'serious', content: 'Maximum number of characters in a number: 15'};
   } else if (/[\/\+\-\*]/.test(currentInput) && maxOperatorNumber(previousInput)) {
-    message = 'Maximum number of operators: 20';
-    display = false;
-    result = false;
+    return {type: 'serious', content: 'Maximum number of operators: 20'};
   } else if (/\d/.test(currentInput) && maxDecimalDotLength(previousInput)) {
-    message = 'Maximum number of digits after decimal dot: 10';
-    display = false;
-    result = false;
-  } else if (/\/$/.test(previousInput) && currentInput === '0') {
-    message = 'Can\'t divide by zero';
-    display = true;
-    result = false;
+    return {type: 'serious', content: 'Maximum number of digits after decimal dot: 10'};
+  } else if (/[0\.]/.test(currentInput) && /[\/0]$/.test(previousInput)) {
+    return {type: 'medium', content: 'Can\'t divide by zero'};
+  } else if (/=/.test(currentInput) && /\/(0(\.)?[\/\+\-\*]|0$)/.test(previousInput)) {
+    return {type: 'medium', content: 'Can\'t divide by zero'};
+  } else if (/delete/.test(currentInput) && /\/(0|0\.)$/.test(previousInput.slice(0, -1))) {
+    return {type: 'medium', content: 'Can\'t divide by zero'};
   }
-
-  return { message, display, result };
+  return '';
 }
 
 export const parseInput = (previousInput, currentInput) => {

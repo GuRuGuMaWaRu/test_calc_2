@@ -6,66 +6,104 @@ import {
 } from '../utils/parsers';
 import { calculationParser } from '../utils/calculation';
 import {
-  SET_INPUT,
+  UPDATE_INPUT,
   CLEAR_INPUT,
-  SHOW_MESSAGE,
-  HIDE_MESSAGE
+  HIDE_MESSAGE,
+  ERROR_MESSAGE
 } from './types';
 
 export function handleInput(parsedInput, currentInput) {
-  // check input
-  const checked = inputCheck(parsedInput, currentInput);
+  //=== check input
+  const message = inputCheck(parsedInput, currentInput);
 
-  // handle DELETE action
+  //=== handle DELETE action
   if (currentInput === 'delete') {
     const updatedInput = parsedInput.slice(0, -1);
-    return {
-      type: SET_INPUT,
-      payload: {
-        parsed: updatedInput,
-        display: beautifyInput(updatedInput),
-        result: checked.result ? beautifyResult(calculationParser(updatedInput)) : '',
-        message: checked.message
-      }
-    };
+
+    if (message) {
+      return {
+        type: ERROR_MESSAGE,
+        payload: {
+          parsed: updatedInput,
+          display: beautifyInput(updatedInput),
+          message: message.content
+        }
+      };
+    } else {
+      return {
+        type: UPDATE_INPUT,
+        payload: {
+          parsed: updatedInput,
+          display: beautifyInput(updatedInput),
+          result: beautifyResult(calculationParser(updatedInput))
+        }
+      };
+    }
   }
+
   //=== handle CLEAR action
   if (currentInput === 'C') {
     return {
       type: CLEAR_INPUT
     };
   }
-  //=== handle '=' acttion
+
+  //=== handle EQUALITY action
   if (currentInput === '=') {
+    if (message) {
+      return {
+        type: ERROR_MESSAGE,
+        payload: {
+          parsed: parsedInput,
+          display: beautifyInput(parsedInput),
+          message: message.content
+        }
+      }
+    } else {
+      return {
+        type: UPDATE_INPUT,
+        payload: {
+          parsed: calculationParser(parsedInput),
+          display: beautifyResult(calculationParser(parsedInput)),
+          result: ''
+        }
+      };
+    }
+  }
+
+  //=== handle CALCULATION
+  const updatedInput = parseInput(parsedInput, currentInput);
+
+  if (message && message.type === 'medium') {
+    console.log('medium');
     return {
-      type: SET_INPUT,
+      type: ERROR_MESSAGE,
       payload: {
-        parsed: calculationParser(parsedInput),
-        display: beautifyResult(calculationParser(parsedInput)),
-        result: ''
+        parsed: updatedInput,
+        display: beautifyInput(updatedInput),
+        message: message.content
+      }
+    };
+  } else if (message && message.type === 'serious') {
+    console.log('serious');
+    return {
+      type: ERROR_MESSAGE,
+      payload: {
+        parsed: parsedInput,
+        display: beautifyInput(parsedInput),
+        message: message.content
+      }
+    };
+  } else {
+    return {
+      type: UPDATE_INPUT,
+      payload: {
+        parsed: updatedInput,
+        display: beautifyInput(updatedInput),
+        result: beautifyResult(calculationParser(updatedInput))
       }
     };
   }
-  // // handle any limits
-  // const checked = inputCheck(parsedInput, currentInput);
-  //
-  // if (checked.message.length > 0) {
-  //   return {
-  //     type: SHOW_MESSAGE,
-  //     payload: checked.message
-  //   };
-  // }
-
-  // handle CALCULATION
-  const updatedInput = parseInput(parsedInput, currentInput);
-  return {
-    type: SET_INPUT,
-    payload: {
-      parsed: updatedInput,
-      display: beautifyInput(updatedInput),
-      result: beautifyResult(calculationParser(updatedInput))
-    }
-  };
 }
 
 export function hideMessage() {
