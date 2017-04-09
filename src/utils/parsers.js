@@ -38,9 +38,10 @@ export const inputCheck = (previousInput, currentInput) => {
   } else if (/\d/.test(currentInput) && /e[\+\-]\d/.test(previousInput)) {
     const [,eNumber] = /e[\+\-](\d+)/.exec(previousInput + currentInput)
     if (Number(eNumber) > 307) {
-      console.log('thats too much!', eNumber);
       return {type: 'serious', content: 'Wrong format'};
     }
+  } else if (/%/.test(currentInput) && /[\/\+\-\*]$/.test(previousInput)) {
+    return {type: 'serious', content: 'Wrong format'};
   }
   return '';
 }
