@@ -34,8 +34,13 @@ export const inputCheck = (previousInput, currentInput) => {
   } else if (/delete/.test(currentInput) && /\/(0|0\.)$/.test(previousInput.slice(0, -1))) {
     return {type: 'medium', content: 'Can\'t divide by zero'};
   } else if (/delete/.test(currentInput) && /e/.test(previousInput) && !/e[\+\-]\d+/.test(previousInput.slice(0, -1))) {
-    console.log('Wrong format');
     return {type: 'medium', content: 'Wrong format'};
+  } else if (/\d/.test(currentInput) && /e[\+\-]\d/.test(previousInput)) {
+    const [,eNumber] = /e[\+\-](\d+)/.exec(previousInput + currentInput)
+    if (Number(eNumber) > 307) {
+      console.log('thats too much!', eNumber);
+      return {type: 'serious', content: 'Wrong format'};
+    }
   }
   return '';
 }
