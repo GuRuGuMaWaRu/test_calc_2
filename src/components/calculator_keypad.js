@@ -68,9 +68,6 @@ export class CalculatorKeypad extends Component {
 
 CalculatorKeypad.propTypes = {
   handleInput: PropTypes.func,
-  getInput: PropTypes.func,
-  deleteInput: PropTypes.func,
-  handleKeyboardInput: PropTypes.func,
   parsedInput: PropTypes.string
 }
 
