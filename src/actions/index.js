@@ -34,6 +34,8 @@ export function handleInput(parsedInput, currentInput) {
 
     if (message) {
       return errorMessage(updatedInput, message.content);
+    } else if (calculationParser(updatedInput) === false) {
+      return errorMessage(updatedInput, 'Can\'t divide by zero');
     } else {
       return {
         type: UPDATE_INPUT,
@@ -57,6 +59,8 @@ export function handleInput(parsedInput, currentInput) {
   if (currentInput === '=') {
     if (message) {
       return errorMessage(parsedInput, message.content);
+    } else if (calculationParser(parsedInput) === false) {
+      return errorMessage(parsedInput, 'Can\'t divide by zero');
     } else {
       return {
         type: UPDATE_INPUT,
