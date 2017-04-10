@@ -12,18 +12,20 @@ export class CalculatorKeypad extends Component {
   handleKeyboard = (event) => {
     const keyName = getKeyName(event);
 
-    if (keyName !== 'delete') {
-      const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
-      rippleEffect(event, true, pressedElement);
-    }
+    if (keyName) {
+      if (keyName !== 'delete') {
+        const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
+        rippleEffect(event, true, pressedElement);
+      }
 
-    if (keyName === 'C') {
-      rippleEffectDisplay(event, true);
-      setTimeout(() => {
+      if (keyName === 'C') {
+        rippleEffectDisplay();
+        setTimeout(() => {
+          this.props.handleInput(this.props.parsedInput, keyName);
+        }, 300);
+      } else {
         this.props.handleInput(this.props.parsedInput, keyName);
-      }, 300);
-    } else {
-      this.props.handleInput(this.props.parsedInput, keyName);
+      }
     }
   }
 
@@ -31,7 +33,7 @@ export class CalculatorKeypad extends Component {
     rippleEffect(event, false, null);
 
     if (key === 'C') {
-      rippleEffectDisplay(event, true);
+      rippleEffectDisplay();
       setTimeout(() => {
         this.props.handleInput(parsedInput, key);
       }, 300);

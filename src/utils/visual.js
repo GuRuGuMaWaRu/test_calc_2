@@ -40,7 +40,7 @@ export const rippleEffect = (event, keyboardUsed, key) => {
   }, 800);
 }
 
-export const rippleEffectDisplay = (event, keyboardUsed, key) => {
+export const rippleEffectDisplay = () => {
   // Getting the div that the effect is relative to
   var element = document.querySelector('.display'),
       // Creating the effect's div
@@ -50,10 +50,10 @@ export const rippleEffectDisplay = (event, keyboardUsed, key) => {
       boxHeight = element.offsetHeight,
       boxY = element.getBoundingClientRect().top,
       boxX = element.getBoundingClientRect().left,
-      // Getting the mouse position
-      mouseX = event.clientX || boxX + boxWidth / 2,
-      mouseY = event.clientY || boxY + boxHeight / 2,
-      // Mouse position relative to the box
+      // Getting the ripple start position
+      mouseX = boxX,
+      mouseY = boxY + boxHeight,
+      // Ripple start position relative to the box
       rippleX = mouseX - boxX,
       rippleY = mouseY - boxY,
       // Calculate which is the farthest corner
