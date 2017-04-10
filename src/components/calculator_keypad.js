@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { rippleEffect } from '../utils/visual';
+import { rippleEffect, rippleEffectDisplay } from '../utils/visual';
 import { getKeyName } from '../utils/parsers';
 
 export class CalculatorKeypad extends Component {
@@ -12,19 +12,32 @@ export class CalculatorKeypad extends Component {
   handleKeyboard = (event) => {
     const keyName = getKeyName(event);
 
-    if (keyName) {
-      if (keyName !== 'delete') {
-        const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
+    if (keyName !== 'delete') {
+      const pressedElement = document.querySelector(`[data-key="${keyName}"]`);
+      rippleEffect(event, true, pressedElement);
+    }
 
-        rippleEffect(event, true, pressedElement);
-      }
+    if (keyName === 'C') {
+      rippleEffectDisplay(event, true);
+      setTimeout(() => {
+        this.props.handleInput(this.props.parsedInput, keyName);
+      }, 300);
+    } else {
       this.props.handleInput(this.props.parsedInput, keyName);
     }
   }
 
   handleMouseAndTouch = (event, parsedInput, key) => {
     rippleEffect(event, false, null);
-    this.props.handleInput(parsedInput, key);
+
+    if (key === 'C') {
+      rippleEffectDisplay(event, true);
+      setTimeout(() => {
+        this.props.handleInput(parsedInput, key);
+      }, 300);
+    } else {
+      this.props.handleInput(parsedInput, key);
+    }
   }
 
   render() {

@@ -23,8 +23,11 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
   }
 
   if (secondNumber.indexOf('%') !== -1) {
+    // console.log(secondNumber);
     // firstNumber = Number(firstNumber);
-    if (operator === '-' || operator === '+') {
+    if (secondNumber.indexOf('-') !== -1) {
+      secondNumber = Number(secondNumber.slice(0, secondNumber.indexOf('%'))) * 0.01;
+    } else if (operator === '-' || operator === '+') {
       secondNumber = firstNumber * secondNumber.slice(0, secondNumber.indexOf('%')) / 100;
     } else {
       secondNumber = secondNumber.slice(0, secondNumber.indexOf('%')) / 100;

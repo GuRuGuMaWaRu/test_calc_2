@@ -35,7 +35,7 @@ export class CalculatorDisplay extends Component {
     }
 
     return (
-      <div className="display">
+      <div className="display" data-rippleEffect="display">
         <div className="display-input padding">{prepareDisplay(display)}</div>
         <div className="display-result padding">{result}</div>
       </div>

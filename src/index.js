@@ -37,6 +37,6 @@ ReactDOM.render(
 ***16 - SOLVE - handle both percent numbers!!!
 ***17 - SOLVE - protection from 'divide by zero' does not allow to type in 0.012 etc
 ***18 - SOLVE - beautify function in display must be replaced - it deletes zeroes after decimal dot
-19 - SOLVE - crashed with '.' after '50/(-'
-20 - SOLVE - dividing by zero in situations like '5/(5-5)'
+***19 - SOLVE - crashed with '.' after '50/(-'
+***20 - SOLVE - dividing by zero in situations like '5/(5-5)'
 */
