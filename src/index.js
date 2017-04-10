@@ -28,7 +28,7 @@ ReactDOM.render(
       from left to right)
 ***10 - ripple animation
 ***11 - SOLVE - when "(6)" pressing "()" brings an error
-12 - SOLVE - if the result is an "E" number, it gets displayed in input field & currently
+***12 - SOLVE - if the result is an "E" number, it gets displayed in input field & currently
       there is no logic to deal with such numbers - I have to parse it somehow
 ***13 - SOLVE - cant delete by ZERO
 ***14 - SOLVE - multiplication & division have equal priority and should be handled

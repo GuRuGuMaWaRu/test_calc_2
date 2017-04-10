@@ -93,7 +93,7 @@ export function handleInput(parsedInput, currentInput) {
       payload: {
         parsed: parsedInput,
         display: beautifyInput(parsedInput),
-        result: beautifyResult(calculationParser(parsedInput)),
+        result: '',
         message: message.content
       }
     };

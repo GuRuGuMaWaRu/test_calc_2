@@ -33,7 +33,7 @@ export const inputCheck = (previousInput, currentInput) => {
     return {type: 'medium', content: 'Can\'t divide by zero'};
   } else if (/delete/.test(currentInput) && /\/(0|0\.)$/.test(previousInput.slice(0, -1))) {
     return {type: 'medium', content: 'Can\'t divide by zero'};
-  } else if (/delete/.test(currentInput) && /e/.test(previousInput) && !/e[\+\-]\d+/.test(previousInput.slice(0, -1))) {
+  } else if (/e/.test(previousInput) && !/e[\+\-]\d+/.test(previousInput.slice(0, -1))) {
     return {type: 'medium', content: 'Wrong format'};
   } else if (/\d/.test(currentInput) && /e[\+\-]\d/.test(previousInput)) {
     const [,eNumber] = /e[\+\-](\d+)/.exec(previousInput + currentInput)
@@ -41,6 +41,8 @@ export const inputCheck = (previousInput, currentInput) => {
       return {type: 'serious', content: 'Wrong format'};
     }
   } else if (/\./.test(currentInput) && /e[\+\-](\d+)?$/.test(previousInput)) {
+    return {type: 'serious', content: 'Wrong format'};
+  } else if (/\(\)/.test(currentInput) && /e[\+\-]$/.test(previousInput)) {
     return {type: 'serious', content: 'Wrong format'};
   } else if (/%/.test(currentInput) && /[\/\+\-\*\(%]$/.test(previousInput)) {
     return {type: 'serious', content: 'Wrong format'};
