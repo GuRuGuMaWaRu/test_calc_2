@@ -18,7 +18,6 @@ export const maxCharacterNumber = (previousInput) => {
 }
 
 export const inputCheck = (previousInput, currentInput) => {
-  console.log(previousInput);
   if (maxCharacterNumber(previousInput)) {
     return {type: 'serious', content: 'Maximum number of characters reached: 100'};
   } else if (/[\d\.]/.test(currentInput) && maxNumberLength(previousInput)) {
@@ -27,12 +26,12 @@ export const inputCheck = (previousInput, currentInput) => {
     return {type: 'serious', content: 'Maximum number of operators: 20'};
   } else if (/\d/.test(currentInput) && maxDecimalDotLength(previousInput)) {
     return {type: 'serious', content: 'Maximum number of digits after decimal dot: 10'};
-  } else if (/[0\.]/.test(currentInput) && /[\/0]$/.test(previousInput)) {
-    return {type: 'medium', content: 'Can\'t divide by zero'};
+  } else if (/[0\.]/.test(currentInput) && /\/(0)?$/.test(previousInput)) {
+    return {type: 'medium', content: 'Can\'t divide by zero1'};
   } else if (/=/.test(currentInput) && /\/(0(\.)?[\/\+\-\*]|0$)/.test(previousInput)) {
-    return {type: 'medium', content: 'Can\'t divide by zero'};
+    return {type: 'medium', content: 'Can\'t divide by zero2'};
   } else if (/delete/.test(currentInput) && /\/(0|0\.)$/.test(previousInput.slice(0, -1))) {
-    return {type: 'medium', content: 'Can\'t divide by zero'};
+    return {type: 'medium', content: 'Can\'t divide by zero3'};
   } else if (/e/.test(previousInput) && !/e[\+\-]\d+/.test(previousInput.slice(0, -1))) {
     return {type: 'medium', content: 'Wrong format'};
   } else if (/\d/.test(currentInput) && /e[\+\-]\d/.test(previousInput)) {
@@ -52,7 +51,7 @@ export const inputCheck = (previousInput, currentInput) => {
 
 export const parseInput = (previousInput, currentInput) => {
   const handlers = [
-    //== '+/-' input
+    //=== '+/-' input
     {
       value: /\+\/\-/,
       test: /\(\-(\d+)?\+\/\-$/, //=== remove a negative sign
@@ -68,7 +67,7 @@ export const parseInput = (previousInput, currentInput) => {
       test: /(\d+)?\+\/\-$/, //=== add a negative sign
       convert: '(-$1'
     },
-    //==
+    //===
     {
       value: /\d/,
       test: /(^|[\/\+\-\*\(])0(\d)/, //=== solve leading zero issue
@@ -119,7 +118,7 @@ export const parseInput = (previousInput, currentInput) => {
       test: /(\))(\d)/, //=== add multiplication operator before a number that follows closing bracket
       convert: '$1*$2'
     },
-    //== percent handlers
+    //=== percent handlers
     {
       value: /%/,
       test: /^%/, //=== forbid percent character as the first character
@@ -137,7 +136,7 @@ export const parseInput = (previousInput, currentInput) => {
     },
   ];
 
-  // add handlers depending on the number of opening/closing brackets
+  //=== add handlers depending on the number of opening/closing brackets
   if (currentInput === '()') {
     const openingBrackets = previousInput.match(/\(/g),
           closingBrackets = previousInput.match(/\)/g),
@@ -169,17 +168,35 @@ export const parseInput = (previousInput, currentInput) => {
   }, previousInput + currentInput);
 }
 
+//=== helper function used to insert thousand separators
+export const insertThousandSeparators = number => {
+  let counter = 0;
+  let tempString = '';
+  for (let i = number.length - 1; i >= 0; i--) {
+    if (counter === 3) {
+      tempString = number[i] + ',' + tempString;
+      counter = 1;
+    } else {
+      tempString = number[i] + tempString;
+      counter += 1;
+    }
+  }
+  return tempString;
+}
+
 export const beautifyInput = (input) => {
   function replaceNumber(_match, number) {
-    // solve issue when toLocaleString deletes decimal dot if it's the last symbol
-    if (input.indexOf('e') !== -1) {
-      return number;
-    } else if (number.endsWith('.')) {
-      number = Number(number);
-      return (number.toLocaleString('en-US', {maximumFractionDigits: 10})) + '.';
+    if (number.indexOf('.') !== -1){
+      let beforeDecimalDot = number.slice(0, number.indexOf('.')),
+          afterDecimalDot = number.slice(number.indexOf('.'));
+
+      return beforeDecimalDot.length > 3
+        ? insertThousandSeparators(beforeDecimalDot) + afterDecimalDot
+        : beforeDecimalDot + afterDecimalDot;
     } else {
-      number = Number(number);
-      return number.toLocaleString('en-US', {maximumFractionDigits: 10});
+      return number.length > 3
+        ? insertThousandSeparators(number)
+        : number;
     }
   }
   return input.replace(/([\d\.]+)/g, replaceNumber);
