@@ -27,11 +27,11 @@ export const inputCheck = (previousInput, currentInput) => {
   } else if (/\d/.test(currentInput) && maxDecimalDotLength(previousInput)) {
     return {type: 'serious', content: 'Maximum number of digits after decimal dot: 10'};
   } else if (/[0\.]/.test(currentInput) && /\/(0)?$/.test(previousInput)) {
-    return {type: 'medium', content: 'Can\'t divide by zero1'};
+    return {type: 'medium', content: 'Can\'t divide by zero'};
   } else if (/=/.test(currentInput) && /\/(0(\.)?[\/\+\-\*]|0$)/.test(previousInput)) {
-    return {type: 'medium', content: 'Can\'t divide by zero2'};
+    return {type: 'medium', content: 'Can\'t divide by zero'};
   } else if (/delete/.test(currentInput) && /\/(0|0\.)$/.test(previousInput.slice(0, -1))) {
-    return {type: 'medium', content: 'Can\'t divide by zero3'};
+    return {type: 'medium', content: 'Can\'t divide by zero'};
   } else if (/e/.test(previousInput) && !/e[\+\-]\d+/.test(previousInput.slice(0, -1))) {
     return {type: 'medium', content: 'Wrong format'};
   } else if (/\d/.test(currentInput) && /e[\+\-]\d/.test(previousInput)) {

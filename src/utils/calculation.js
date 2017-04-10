@@ -32,8 +32,8 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
   } else {
     secondNumber = Number(secondNumber);
   }
-
-  switch(operator) { // perform a calculation depending on passed operator
+  //=== perform a calculation depending on passed operator
+  switch(operator) {
     case '+':
       return checkForExponential(firstNumber + secondNumber);
     case '-':
@@ -41,6 +41,10 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
     case '*':
       return checkForExponential(firstNumber * secondNumber);
     case '/':
+      //=== protection from division by zero in complex equations
+      if (secondNumber === 0) {
+        return 'error';
+      }
       return checkForExponential(firstNumber / secondNumber);
     default:
       return '';
@@ -49,6 +53,10 @@ export const calculateSimple = (_match, firstNumber, operator, secondNumber) => 
 
 export const calculateOuter = (input) => {
   try {
+    //=== catch error status
+    if (input.indexOf('error') !== -1) {
+      return false;
+    }
     //=== return if only one number is left
     if (/^(\-)?\d+(\.)?(\d+)?(e\+\d+|e\+|e)?(e\-\d+|e\-|e)?%?$/.test(input)) {
       //=== handle single number with percent sign
@@ -90,6 +98,10 @@ export const calculateBracketedExpression = (input) => {
 }
 
 export const calculationParser = (input) => {
+  //=== resolve error status
+  if (!input) {
+    return false;
+  }
   if (input.length === 0) { // solve issue with empty input
     return input;
   }
