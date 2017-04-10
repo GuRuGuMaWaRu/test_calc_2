@@ -36,4 +36,5 @@ ReactDOM.render(
 15 - ADD animated clear sequence like in Android calculator
 ***16 - SOLVE - handle both percent numbers!!!
 ***17 - SOLVE - protection from 'divide by zero' does not allow to type in 0.012 etc
+18 - SOLVE - move some errors from parseInput into inputCheck (if a message should be displayed)
 */

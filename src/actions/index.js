@@ -88,13 +88,12 @@ export function handleInput(parsedInput, currentInput) {
       }
     };
   } else if (message && message.type === 'serious') {
-    console.log('serious');
     return {
       type: ERROR_MESSAGE,
       payload: {
         parsed: parsedInput,
         display: beautifyInput(parsedInput),
-        result: '',
+        result: beautifyResult(calculationParser(parsedInput)),
         message: message.content
       }
     };

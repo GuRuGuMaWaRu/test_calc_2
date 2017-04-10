@@ -1,6 +1,6 @@
 import {
-  SHOW_MESSAGE,
-  HIDE_MESSAGE
+  // SHOW_MESSAGE,
+  // HIDE_MESSAGE
 } from '../actions/types';
 
 export default function(state = {content: ''}, action) {

@@ -57,16 +57,6 @@ describe('maxCharacterNumber', () => {
 
 describe('parseInput', () => {
   //=== %
-  it('does not enter percent after an operator', () => {
-    expect(parseInput('9+', '%')).toEqual('9+');
-    expect(parseInput('9-', '%')).toEqual('9-');
-    expect(parseInput('9*', '%')).toEqual('9*');
-    expect(parseInput('9/', '%')).toEqual('9/');
-    expect(parseInput('9%', '%')).toEqual('9%');
-  });
-  it('does not enter percent after an opening bracket', () => {
-    expect(parseInput('(', '%')).toEqual('(');
-  });
   it('does not enter percent as a first character', () => {
     expect(parseInput('', '%')).toEqual('');
   });

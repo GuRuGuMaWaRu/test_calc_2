@@ -40,6 +40,8 @@ export const inputCheck = (previousInput, currentInput) => {
     if (Number(eNumber) > 307) {
       return {type: 'serious', content: 'Wrong format'};
     }
+  } else if (/\./.test(currentInput) && /e[\+\-](\d+)?$/.test(previousInput)) {
+    return {type: 'serious', content: 'Wrong format'};
   } else if (/%/.test(currentInput) && /[\/\+\-\*\(%]$/.test(previousInput)) {
     return {type: 'serious', content: 'Wrong format'};
   }
@@ -116,11 +118,6 @@ export const parseInput = (previousInput, currentInput) => {
       convert: '$1*$2'
     },
     //== percent handlers
-    {
-      value: /%/,
-      test: /([\/\+\-\*\(%])%/, //=== cases when percent sign is not entered
-      convert: '$1'
-    },
     {
       value: /%/,
       test: /^%/, //=== forbid percent character as the first character
