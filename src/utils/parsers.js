@@ -190,6 +190,12 @@ export const beautifyInput = (input) => {
       let beforeDecimalDot = number.slice(0, number.indexOf('.')),
           afterDecimalDot = number.slice(number.indexOf('.'));
 
+      if (afterDecimalDot.length > 10) {
+        const numberToInt = Number(number);
+        const fixedNumber = numberToInt.toFixed(10);
+        afterDecimalDot = fixedNumber.slice(fixedNumber.indexOf('.'));
+      }
+
       return beforeDecimalDot.length > 3
         ? insertThousandSeparators(beforeDecimalDot) + afterDecimalDot
         : beforeDecimalDot + afterDecimalDot;
